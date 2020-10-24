@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "List";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<script src="~/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/css/site.css" rel="stylesheet" />
+
+<fieldset class="layui-elem-field layui-field-title site-demo-button" style="margin-top: 30px;">
+    <legend>用品列表</legend>
+</fieldset>
+
+<div>
+    <div class="layui-input-inline layui-form">
+        <select id="service" name="service">
+            <option value="0">--请选择--</option>
+        </select>
+    </div>
+    <div class="layui-inline">
+        <input id="demoReload" class="form-control" type="text" placeholder="请输入">
+    </div>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="Show();">
+        <i class="layui-icon">&#xe615;</i> 查找
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:370px;" onclick="Register();">
+        <i class="layui-icon">&#xe654;</i> 登记
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="Show();">
+        <i class="layui-icon">&#xe9aa;</i> 刷新
+    </button>
+    <table style="margin-top:70px;" class="table table-bordered">
+        <thead>
+            <tr style="background-color:#F5F5F5">
+                <td>名称</td>
+                <td>类别</td>
+                <td>编号</td>
+                <td>规格</td>
+                <td>库存数量</td>
+            </tr>
+        </thead>
+        <tbody id="tb">
+        </tbody>
+    </table>
+</div>
+<script>
+    layui.use('form', function () {
+        var form = layui.form;
+        //检查项目添加到下拉框中
+        $.ajax({
+            url: 'http://localhost:57726/api/Default/GetCategory',
+            dataType: 'json',
+            type: 'get',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $('#service').append(new Option(item.cName, item.cId));// 下拉菜单里添加元素
+                });
+                layui.form.render("select");
+                //重新渲染 固定写法
+            }
+        })
+    });
+    $(function () {
+        Show();
+    })
+
+
+    function Show() {
+        $.ajax({
+            url: 'http://localhost:57726/api/Default/GetSupplieslist/',
+            data: { Name: $("#demoReload").val() },
+            type: 'get',
+            dataType: 'json',
+            success: function (d) {
+                $("#tb").empty();
+                $(d).each(function () {
+                    var html = '<tr>' +
+                        '<td>' + '<a href="/Supplieslist/Particulars?id=' + this.sId + '">' + this.sName + '</a>' + '</td>' +
+                        '<td>' + this.cName + '</td>' +
+                        '<td>' + this.number + '</td>' +
+                        '<td>' + this.specifications + '</td>' +
+                        '<td>' + this.inventoryQuantity + '</td>' +
+                        '</tr>'
+                    $("#tb").append(html);
+                })
+            }
+        })
+    }
+    //登记跳转
+    function Register() {
+        location.href = '/Supplieslist/Registers';
+    }
+</script>
+

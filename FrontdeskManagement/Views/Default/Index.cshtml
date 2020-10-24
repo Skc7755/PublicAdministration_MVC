@@ -1,0 +1,1304 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="~/css/site.css" rel="stylesheet" type="text/css"/>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+@*<h1 class="wrapper" style="color:lightslategray;font-family:汉仪中圆简;">
+    资产管理
+</h1>*@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title></title>
+</head>
+<body>
+    <style type="text/css">
+     *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+}
+/*body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #050801;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+}*/
+ #a4{
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    margin: 40px 0;
+    color:greenyellow;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-right: 50px;
+    width:250px;
+    height:25px;
+    text-align:center;
+    padding-bottom:60px;
+    margin-left:30px
+}
+  #a3{
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    margin: 40px 0;
+    color: greenyellow;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-right: 50px;
+    width:250px;
+    height:25px;
+    text-align:center;
+    padding-bottom:60px;
+    margin-left:30px
+}
+       #a2{
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    margin: 40px 0;
+    color: greenyellow;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-right: 50px;
+     width:250px;
+    height:25px;
+    text-align:center;
+    padding-bottom:60px;
+    margin-left:30px
+}
+       #a1{
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    margin: 40px 0;
+    color: burlywood;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-right: 50px;
+    width:250px;
+    height:25px;
+    text-align:center;
+    padding-bottom:60px;
+    margin-left:30px
+}
+ #a1:hover{
+    background:#ffffff;
+    color:#8956ee;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
+ #a1:nth-child(1){
+    filter: hue-rotate(270deg);
+}
+ #a1:nth-child(2){
+    filter: hue-rotate(110deg);
+}
+ #a1 span{
+    position: absolute;
+    display: block;
+}
+ #a1 span:nth-child(1){
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,transparent,#03e9f4);
+    animation: animate1 1s linear infinite;
+}
+@@keyframes animate1{
+    0%{
+        left: -100%;
+    }
+    50%,100%{
+        left: 100%;
+    }
+}
+ #a1 span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,#03e9f4);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+@@keyframes animate2{
+    0%{
+        top: -100%;
+    }
+    50%,100%{
+        top: 100%;
+    }
+}
+ #a1 span:nth-child(3){
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg,transparent,#03e9f4);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+@@keyframes animate3{
+    0%{
+        right: -100%;
+    }
+    50%,100%{
+        right: 100%;
+    }
+}
+
+
+ #a1 span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg,transparent,#03e9f4);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+@@keyframes animate4{
+    0%{
+        bottom: -100%;
+    }
+    50%,100%{
+        bottom: 100%;
+    }
+}
+
+ #a2:hover{
+    background:#0ff;
+    color:#ffffff;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
+
+#a2:nth-child(1){
+    filter: hue-rotate(270deg);
+}
+#a2:nth-child(2){
+    filter: hue-rotate(110deg);
+}
+#a2  span{
+    position: absolute;
+    display: block;
+}
+#a2 span:nth-child(1){
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,transparent,#03e9f4);
+    animation: animate1 1s linear infinite;
+}
+@@keyframes animate1{
+    0%{
+        left: -100%;
+    }
+    50%,100%{
+        left: 100%;
+    }
+}
+#a2  span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,#03e9f4);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+@@keyframes animate2{
+    0%{
+        top: -100%;
+    }
+    50%,100%{
+        top: 100%;
+    }
+}
+#a2 span:nth-child(3){
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg,transparent,#03e9f4);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+@@keyframes animate3{
+    0%{
+        right: -100%;
+    }
+    50%,100%{
+        right: 100%;
+    }
+}
+
+
+#a2 span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg,transparent,#03e9f4);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+@@keyframes animate4{
+    0%{
+        bottom: -100%;
+    }
+    50%,100%{
+        bottom: 100%;
+    }
+}
+#a3:hover{
+    background:#0ff;
+    color:#ffffff;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
+
+#a3:nth-child(1){
+    filter: hue-rotate(270deg);
+}
+#a3:nth-child(2){
+    filter: hue-rotate(110deg);
+}
+#a3  span{
+    position: absolute;
+    display: block;
+}
+#a3 span:nth-child(1){
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,transparent,#03e9f4);
+    animation: animate1 1s linear infinite;
+}
+@@keyframes animate1{
+    0%{
+        left: -100%;
+    }
+    50%,100%{
+        left: 100%;
+    }
+}
+#a3  span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,#03e9f4);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+@@keyframes animate2{
+    0%{
+        top: -100%;
+    }
+    50%,100%{
+        top: 100%;
+    }
+}
+#a3 span:nth-child(3){
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg,transparent,#03e9f4);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+@@keyframes animate3{
+    0%{
+        right: -100%;
+    }
+    50%,100%{
+        right: 100%;
+    }
+}
+
+
+#a3 span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg,transparent,#03e9f4);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+@@keyframes animate4{
+    0%{
+        bottom: -100%;
+    }
+    50%,100%{
+        bottom: 100%;
+    }
+}
+#a4:hover{
+    background:#0ff;
+    color:#ffffff;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
+
+#a4:nth-child(1){
+    filter: hue-rotate(270deg);
+}
+#a4:nth-child(2){
+    filter: hue-rotate(110deg);
+}
+#a4  span{
+    position: absolute;
+    display: block;
+}
+#a4 span:nth-child(1){
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,transparent,#03e9f4);
+    animation: animate1 1s linear infinite;
+}
+@@keyframes animate1{
+    0%{
+        left: -100%;
+    }
+    50%,100%{
+        left: 100%;
+    }
+}
+#a4  span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,#03e9f4);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+@@keyframes animate2{
+    0%{
+        top: -100%;
+    }
+    50%,100%{
+        top: 100%;
+    }
+}
+#a4 span:nth-child(3){
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg,transparent,#03e9f4);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+@@keyframes animate3{
+    0%{
+        right: -100%;
+    }
+    50%,100%{
+        right: 100%;
+    }
+}
+
+
+#a4 span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg,transparent,#03e9f4);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+@@keyframes animate4{
+    0%{
+        bottom: -100%;
+    }
+    50%,100%{
+        bottom: 100%;
+    }
+}
+
+        #dv2 {
+             display:flex;    
+    align-items: start;
+    height: 100vh;
+    background:#050801;
+    font-size:20px;
+    font-family: 汉仪竹节体简;
+    font-weight: bold;
+ 
+        }
+
+/*悬停*/
+        .button {
+  border: 2px solid #d2bdff;
+  height: 80px;
+  width: 200px;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  margin: 25px;
+}
+.button::after {
+  content: "";
+  position: absolute;
+  top: 41%;
+  left: 50%;
+  transform: translate(-50%);
+  color: #d2bdff;
+  transition: all 0.1s linear;
+}
+.button::before {
+  content:"";
+  position: relative;
+  display: block;
+  height: 15px;
+  width: 15px;
+  background: #d2bdff;
+  box-shadow: 0px 0px 10px 3px #0ff;
+  margin-left: -8px;
+  margin-top: -8px;
+  opacity: 0;
+  transition: all 0.1s linear;
+  border-radius: 100%;
+  animation: star 1.3s linear infinite;
+}
+
+@@keyframes star {
+  0% {
+    margin-left: -8px;
+    margin-top: -8px;
+  }
+  25% {
+    margin-left: 194px;
+    margin-top: -8px;
+  }
+  50% {
+    margin-left: 194px;
+    margin-top: 75px;
+  }
+  75% {
+    margin-left: -8px;
+    margin-top: 75px;
+  }
+  100% {
+    margin-left: -8px;
+    margin-top: -8px;
+  }
+}
+        .button:hover::before {
+            opacity: 1;
+            animation: star 1.3s linear infinite;
+        }
+.button:hover::after {
+  content: "I'M HRER";
+  text-shadow: 0 0 30px #fff, 0 0 30px #fff, 0 0 40px #82bedc, 0 0 50px #82bedc, 0 0 60px #82bedc, 0 0 70px #82bedc, 0 0 80px #82bedc;
+}
+
+.button2 {
+  position: relative;
+  display: inline-block;
+  padding: 30px 61px;
+  border-radius: 4px;
+  color:#03e9f4;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  margin: 25px;
+  font-family: "Roboto", sans-serif;
+  filter: hue-rotate(0deg);
+  border: 2px solid #d2bdff;
+  transition: all 0.1s linear;
+}
+.button2:hover {
+  border: 1px solid transparent;
+}
+.button2:hover span {
+  position: absolute;
+  display: block;
+}
+.button2:hover span:nth-child(1) {
+  filter: hue-rotate(0deg);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #3a86ff);
+  animation: animate1 1s linear infinite;
+}
+@@keyframes animate1 {
+  0% {
+    left: -100%;
+  }
+  50%,
+        100% {
+    left: 100%;
+  }
+}
+.button2:hover span:nth-child(2) {
+  filter: hue-rotate(60deg);
+  top: -100%;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #3a86ff);
+  animation: animate2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+@@keyframes animate2 {
+  0% {
+    top: -100%;
+  }
+  50%,
+        100% {
+    top: 100%;
+  }
+}
+.button2:hover span:nth-child(3) {
+  filter: hue-rotate(120deg);
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: linear-gradient(270deg, transparent, #3a86ff);
+  animation: animate3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+@@keyframes animate3 {
+  0% {
+    right: -100%;
+    height: 3px;
+  }
+  50%,
+        100% {
+    height: 2px;
+    right: 100%;
+  }
+}
+.button2:hover span:nth-child(4) {
+  filter: hue-rotate(300deg);
+  bottom: -100%;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #3a86ff);
+  animation: animate4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+@@keyframes animate4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+        100% {
+    bottom: 100%;
+  }
+}
+
+   .menu1 {
+     display:flex;    
+    align-items: start;
+    height: 100vh;
+    background:#050801;
+    font-size:20px;
+    font-family: 汉仪竹节体简;
+    font-weight: bold;
+ 
+        }
+        
+
+    </style>
+    <div id="boss" style="width:1702px;height:1200px;border:dashed 3px;margin-left:-300px">
+        <div class="menu1" style="width:300px;height:1200px;border:double 2px;">
+            <table>
+                <tr>
+                    <td>
+                        <div class="button">
+                            <span id="sp1" style="color:#00ffff;font-family:汉仪中圆简;font-size:40px">
+                                车辆管理
+
+                            </span>
+                        </div>
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       
+
+                        <div class="button2">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <a href="#" onclick="CarShow()">车辆管理</a>
+                          
+                        </div>
+                        @*<input id="Button1" type="button" value="车辆管理" onclick="CarShow()" />*@
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @*<input id="Button2" type="button" value="资产管理"  onclick="AssetShow()"/>*@
+                       
+                      
+                        <div class="button2">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <a href="#" onclick="AssetShow()">资产管理</a>
+                            </div>
+
+                       
+                    </td>
+                </tr>
+            </table>   
+        </div>
+        <div id="dv1" style="border:solid 1px;width:1201px;height:1200px;position:center;margin-left:300px;margin-top:-1200px">
+            <div id="dv2" style="margin-top:0px;width:300px;height:1200px;border:solid 1px;">               
+                @*<table>
+                    <tr>
+                        <td>
+                            <a id="a1" href="#" onclick="AssetsList()">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                资产列表
+                            </a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a id="a2" href="#" onclick="CFAList()">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                资产领用
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a id="a3" href="#" onclick="AfarList()">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                资产归还
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a id="a4" href="#" onclick="APAList()">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                资产采购
+                            </a>
+                        </td>
+                    </tr>
+
+
+                </table>*@
+
+
+
+                @*<td> <input id="button1" type="button" value="资产列表" onclick="AssetsList()" /></td>
+
+                <tr>
+                    <td> <input id="button2" type="button" value="资产领用" onclick="CFAList()" /></td>
+                </tr>
+                <tr>
+                    <td> <input id="Button3" type="button" value="资产归还申请" onclick="AfarList()" /></td>
+                </tr>
+                <tr>
+                    <td> <input id="Button4" type="button" value="资产采购" onclick="APAList()" /></td>
+                </tr>*@
+
+
+
+
+            </div>
+            <div id="dv" style="width:1093.5px;height:1200px;margin-left:300px;border:solid 1px;margin-top:-1200px;background-color:#808080;">
+
+            </div>
+        </div>
+    </div> 
+  
+    @*<table class="table table-bordered">
+            <tr>
+                <th> 主题</th>
+                <th> 申请人</th>
+                <th> 所属部门 </th>
+                <th> 申请日期 </th>
+                <th> 归还数量 </th>
+            </tr>
+            <tbody id="tb">
+            </tbody>
+        </table>*@
+</body>
+</html>
+
+<script>
+   //车辆管理优先显示
+   
+    $(
+        CarShow()
+    )
+   //车辆管理
+    function CarShow()
+    {
+        $("#sp1").empty();
+        var span = '<h1 class="wrapper" style="color:#00ffff;font-family:汉仪中圆简">车辆管理</h1>';
+        $("#sp1").append(span);
+
+        Menu2();
+        VehicleInfoList();
+
+    }
+      function Menu2() {
+         $("#dv2").empty();
+                var dvr=" <table>"+
+                    "<tr>"+
+                        "<td>"+
+                            "<a id='a1' href='#' onclick='VehicleInfoList()'><span></span> <span></span> <span></span><span></span>车辆列表</a>"                                    
+                        +"</td>"   
+                       +"</tr>"+                   
+                       "<tr>"+
+                        "<td>"+
+                            '<a id="a2" href="#" onclick="CarApplicationList()"><span></span> <span></span> <span></span><span></span>用车申请</a>'
+                         +"</td>" 
+                         +"</tr>"+   
+                    "<tr>"+
+                        "<td>"+
+                            '<a id="a3" href="#" onclick="AIRList()"><span></span> <span></span> <span></span><span></span> 车辆保险 </a>'                                
+                        +"</td>"
+                    +"</tr>"
+                    +"<tr>"+
+                        "<td>"+
+                            '<a id="a4" href="#" onclick="VMRList()"><span></span> <span></span> <span></span><span></span>车辆维修保养</a>'
+                      +"</td>" 
+                    + "</tr>"
+                     +"<tr>"+
+                        "<td>"+
+                            '<a id="a4" href="#" onclick="AIROVList()"><span></span> <span></span> <span></span><span></span>车辆年检</a>'
+                      +"</td>" 
+                    + "</tr>"
+                     +"<tr>"+
+                        "<td>"+
+                            '<a id="a4" href="#" onclick="VRRList()"><span></span> <span></span> <span></span><span></span>车辆加油</a>'
+                      +"</td>" 
+                    + "</tr>"
+                     +"<tr>"+
+                        "<td>"+
+                            '<a id="a4" href="#" onclick="VARList()"><span></span> <span></span> <span></span><span></span>车辆事故</a>'
+                      +"</td>" 
+                      +"</tr>"
+                    + "</table>";
+        $("#dv2").append(dvr);
+       
+    }
+    //车辆列表
+    function VehicleInfoList() {
+
+         jQuery.ajax({
+            url: "http://localhost:57726/api/default/VehicleInfoList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '车辆名称' + "</th>" +
+                    "<th>" + '车牌号' + "</th>" +
+                    "<th>" + '下次年检日期' + " </th>" +
+                    "<th>" + '保险截止日期' + " </th>" +
+                    "<th>" + '上次保养日期' + " </th>" +
+                     "<th>" + '状态' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" +"<a href='#'>"+ this.carName + "</a>"+"</td>" +
+                        "<td>" + this.licensePlateNum + "</td>" +
+                        "<td>" + this.nextInspection + "</td>" +
+                        "<td>" + this.insuranceExpirationDate + "</td>" +
+                        "<td>" + this.lastMaintenanceDate + "</td>" +
+                         "<td>" + this.autoState+ "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+
+
+    }
+    //用车申请
+    function CarApplicationList() {
+           jQuery.ajax({
+            url: "http://localhost:57726/api/default/CarApplicationList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题' + "</th>" +
+                    "<th>" + '申请人' + "</th>" +
+                    "<th>" + '所属部门' + " </th>" +
+                    "<th>" + '制定车辆' + " </th>" +
+                    "<th>" + '时间段' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" +"<a href='#'>"+ this.subject + "</a>"+"</td>" +
+                        "<td>" + this.proposer  + "</td>" +
+                        "<td>" + this.department + "</td>" +
+                        "<td>" + this.vehicleName + "</td>" +
+                        "<td>" + this.timeQuantum + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+    }
+    //汽车保险登记
+    function AIRList() {
+          jQuery.ajax({
+            url: "http://localhost:57726/api/default/AIRList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题' + "</th>" +
+                    "<th>" + '车牌号' + "</th>" +
+                    "<th>" + '保险有效期' + " </th>" +
+                    "<th>" + '投保金额（元）' + " </th>" +
+                    "<th>" + '保险公司' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#'>"+this.subject+"</a>" + "</td>" +
+                        "<td>" + this.licensePlateNum  + "</td>" +
+                        "<td>" + this.durationOfInsurance + "</td>" +
+                        "<td>" + this.totalCostOfInsurance + "</td>" +
+                        "<td>" + this.insuranceCompany + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+    }
+       //车辆维修保养登记
+     function VMRList() {
+          jQuery.ajax({
+            url: "http://localhost:57726/api/default/VMRList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题' + "</th>" +
+                    "<th>" + '车牌号' + "</th>" +
+                    "<th>" + '类型' + " </th>" +
+                    "<th>" + '时间段' + " </th>" +
+                    "<th>" + '费用（元）' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" +"<a href='#'>"+ this.subject + "</a>"+"</td>" +
+                        "<td>" + this.licensePlateNum + "</td>" +
+                        "<td>" + this.type + "</td>" +
+                        "<td>" + this.timeQuantum + "</td>" +
+                        "<td>" + this.cost + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+    }
+    //车辆年检
+    function AIROVList()
+    {
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/AIROVList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题' + "</th>" +
+                    "<th>" + '车牌号' + "</th>" +
+                    "<th>" + '本次年检日期' + " </th>" +
+                    "<th>" + '下次年检日期' + " </th>" +
+                    "<th>" + '费用（元）' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#'>"+this.subject +"</a>"+ "</td>" +
+                        "<td>" + this.licensePlateNum + "</td>" +
+                        "<td>" + this.thisAnnualInspectionDate + "</td>" +
+                        "<td>" + this.nextAnnualInspectionDate + "</td>" +
+                        "<td>" + this.cost + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+
+    }
+    //车辆加油登记
+    function VRRList() {
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/VRRList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题' + "</th>" +
+                    "<th>" + '车牌号' + "</th>" +
+                    "<th>" + '加油日期' + " </th>" +
+                    "<th>" + '加油容量（升）' + " </th>" +
+                    "<th>" + '加油金额（元）' + " </th>" +
+                    "<th>" + '申请人' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" +"<a href='#'>"+ this.subject +"</a>"+ "</td>" +
+                        "<td>" + this.licensePlateNum + "</td>" +
+                        "<td>" + this.RefuelDate + "</td>" +
+                        "<td>" + this.RefuelingCapacity + "</td>" +
+                        "<td>" + this.cost + "</td>" +
+                         "<td>" + this.proposer + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+
+    }
+    //车辆事故登记表
+    function VARList() {
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/VARList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题' + "</th>" +
+                    "<th>" + '车牌号' + "</th>" +
+                    "<th>" + '驾驶员' + " </th>" +
+                    "<th>" + '事故时间' + " </th>" +
+                    "<th>" + '事故地点' + " </th>" +            
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#'>"+this.subject +"</a>"+ "</td>" +
+                        "<td>" + this.licensePlateNum + "</td>" +
+                        "<td>" + this.Driver + "</td>" +
+                        "<td>" + this.Time + "</td>" +
+                        "<td>" + this.Place + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+
+
+
+    }
+
+    ////////资产管理
+    function AssetShow() {
+        $("#sp1").empty();
+        var span = '<h1 class="wrapper" style="color:lightpink;font-family:汉仪中圆简">资产管理</h1>';
+        $("#sp1").append(span);
+
+        Menu1();
+        AssetsList();
+    }
+    function Menu1() {
+         $("#dv2").empty();
+                var dvr=" <table>"+
+                    "<tr>"+
+                        "<td>"+
+                            "<a id='a1' href='#' onclick='AssetsList()'><span></span> <span></span> <span></span><span></span>资产列表</a>"                                    
+                        +"</td>"   
+                       +"</tr>"+                   
+                       "<tr>"+
+                        "<td>"+
+                            '<a id="a2" href="#" onclick="CFAList()"><span></span> <span></span> <span></span><span></span>资产领用</a>'
+                         +"</td>" 
+                         +"</tr>"+   
+                    "<tr>"+
+                        "<td>"+
+                            '<a id="a3" href="#" onclick="AfarList()"><span></span> <span></span> <span></span><span></span> 资产归还 </a>'                                
+                        +"</td>"
+                    +"</tr>"
+                    +"<tr>"+
+                        "<td>"+
+                            '<a id="a4" href="#" onclick="APAList()"><span></span> <span></span> <span></span><span></span>资产采购 </a>'
+                      +"</td>" 
+                      +"</tr>"
+                    + "</table>";
+        $("#dv2").append(dvr);
+       
+    }
+
+   
+       
+
+         //资产列表
+    function AssetsList() {
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/AssetsList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                //$("#dv2").empty();
+                //var dvr=" <table>"+
+                //    "<tr>"+
+                //        "<td>"+
+                //            "<a id='a1' href='#' onclick='"+AssetsList()+"'>资产列表</a>"                               
+                //        +"</td>"   
+                //       +"</tr>"+                   
+                //       "<tr>"+
+                //        "<td>"+
+                //            '<a id="a2" href="#" onclick="'+CFAList()+'">资产领用</a>'
+                //         +"</td>" 
+                //         +"</tr>"+   
+                //    "<tr>"+
+                //        "<td>"+
+                //            '<a id="a3" href="#" onclick="'+AfarList()+'"> 资产归还 </a>'                                
+                //        +"</td>"
+                //    +"</tr>"
+                //    +"<tr>"+
+                //        "<td>"+
+                //            '<a id="a4" href="#" onclick="'+APAList()+'">资产采购 </a>'
+                //      +"</td>" 
+                //      +"</tr>"
+                //    + "</table>";
+                //$("#dv2").append(dvr);
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '资产名称' + "</th>" +
+                    "<th>" + '资产类别' + "</th>" +
+                    "<th>" + '规格' + " </th>" +
+                    "<th>" + '编号' + " </th>" +
+                    "<th>" + '所在部门' + " </th>" +
+                    "<th>" + '单价(元)' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#'>"+this.assetName +"</a>"+ "</td>" +
+                        "<td>" + this.assetType + "</td>" +
+                        "<td>" + this.specification + "</td>" +
+                        "<td>" + this.serialNumber + "</td>" +
+                        "<td>" + this.department + "</td>" +
+                        "<td>" + this.unitPrice + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+
+            }
+        })
+    }
+
+    //资产领用
+    function CFAList() {
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/CFAList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题 ' + "</th>" +
+                    "<th>" + '申请人' + "</th>" +
+                    "<th>" + '所属部门' + " </th>" +
+                    "<th>" + '申请日期' + " </th>" +
+                    "<th>" + '领用数量' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#'>"+this.subject +"</a>"+ "</td>" +
+                        "<td>" + this.proposer + "</td>" +
+                        "<td>" + this.department + "</td>" +
+                        "<td>" + this.applicationDate + "</td>" +
+                        "<td>" + this.amount + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+    }
+
+    //资产归还申请
+    function AfarList() {
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/AfarList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题 ' + "</th>" +
+                    "<th>" + '申请人' + "</th>" +
+                    "<th>" + '所属部门' + " </th>" +
+                    "<th>" + '申请日期' + " </th>" +
+                    "<th>" + '归还数量' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#'>"+this.subject +"</a>"+ "</td>" +
+                        "<td>" + this.proposer + "</td>" +
+                        "<td>" + this.department + "</td>" +
+                        "<td>" + this.applicationDate + "</td>" +
+                        "<td>" + this.amount + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+
+            }
+        })
+
+    }
+    //APA资产采购申请
+    function APAList() {
+
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/APAList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题 ' + "</th>" +
+                    "<th>" + '申请人' + "</th>" +
+                    "<th>" + '所属部门' + " </th>" +
+                    "<th>" + '申请日期' + " </th>" +
+                    "<th>" + '资产名称' + " </th>" +
+                    "<th>" + '采购数量' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#'>"+this.subject+"</a>" + "</td>" +
+                        "<td>" + this.proposer + "</td>" +
+                        "<td>" + this.department + "</td>" +
+                        "<td>" + this.applicationDate + "</td>" +
+                        "<td>" + this.assetName + "</td>" +
+                        "<td>" + this.amount + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+
+            }
+        })
+
+    }
+    
+   
+
+</script>
+

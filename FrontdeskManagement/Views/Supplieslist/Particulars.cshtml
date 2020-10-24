@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "Particulars";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<script src="~/layui-v2.5.6/layui/layui.js"></script>
+
+<div>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:885px;" onclick="Return();">
+        <i class="layui-icon">&#xe65c;</i> 返回
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="Show()">
+        <i class="layui-icon">&#xe9aa;</i> 刷新
+    </button>
+</div>
+<br />
+<table class="table" cellpadding="20">
+    <tr>
+        <td class="text-center">名称</td>
+        <td>
+            <input type="text" id="s_Name" class="form-control">
+        </td>
+        <td class="text-center">类别</td>
+        <td>
+            <select class="form-control" id="txt_Cat">
+                <option value="-1">--请选择--</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">规格</td>
+        <td>
+            <input type="text" id="s_Specifications" class="form-control">
+        </td>
+        <td class="text-center">编号</td>
+        <td>
+            <input type="text" id="s_Number" class="form-control">
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">计量单位</td>
+        <td>
+            <input type="text" id="s_Company" class="form-control">
+        </td>
+        <td class="text-center">初始数量</td>
+        <td>
+            <input type="text" id="s_InventoryQuantity" class="form-control">
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">存放区域</td>
+        <td>
+            <input type="text" id="s_StorageArea" class="form-control">
+        </td>
+        <td class="text-center">管理人</td>
+        <td>
+            <input type="text" id="s_Administrator" class="form-control">
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">描述</td>
+        <td colspan="3">
+            <textarea class="form-control" id="s_Describe" rows="2" cols="20"></textarea>
+        </td>
+    </tr>
+</table>
+<script>
+    $(function () {
+        var id = window.location.href.split("id")[1].split("=")[1];
+        console.log(decodeURI(id));
+        GetCategory();
+        Thefill(id);
+    })
+    function Thefill(id) {
+        $.ajax({
+            async: false,
+            url: "http://localhost:57726/api/Default/SupplieslistId",
+            type: "get",
+            dataType: "json",
+            data: { sllId: id },
+            success: function (d) {
+                $("#s_Name").val(d.sName);
+                $("#s_Specifications").val(d.specifications);
+                $("#s_Number").val(d.number);
+                $("#s_Company").val(d.company);
+                $("#s_InventoryQuantity").val(d.inventoryQuantity);
+                $("#s_StorageArea").val(d.storageArea);
+                $("#s_Administrator").val(d.administrator);
+                $("#s_Describe").val(d.s_Describe);
+            }
+        })
+    }
+    //用品类别下拉框
+    function GetCategory() {
+        $.ajax({
+            async: false,
+            url: 'http://localhost:57726/api/Default/GetCategory',
+            dataType: "json",
+            type: "get",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#txt_Cat").append("<option value='" + this.cId + "'>" + this.cName + "</option>");
+                })
+            }
+        })
+    }
+    //返回跳转
+    function Return() {
+        location.href = '/Supplieslist/List';
+    }
+</script>
+

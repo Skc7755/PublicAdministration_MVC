@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewData["Title"] = "Particulars";
+}
+<script src="~/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<fieldset class="layui-elem-field layui-field-title site-demo-button" style="margin-top: 30px;">
+    <legend>用品领用申请详情</legend>
+</fieldset>
+<div>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:910px;" onclick="Return()">
+        <i class="layui-icon">&#xe65c;</i> 返回
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="">
+        <i class="layui-icon">&#xe9aa;</i> 刷新
+    </button>
+</div>
+<br />
+<h2 style="background-color:cornsilk" class="font-weight-light">基本信息</h2>
+<table class="table" cellpadding="20">
+    <tr>
+        <td style="padding-left: 60px;">主题</td>
+        <td>
+            <input class="form-control" id="txt_ThemeName" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td style="padding-left: 52px;">结束时间</td>
+        <td style="padding-right: 475px;">
+            <input class="form-control" id="txt_EndTime" type="text" />
+        </td>
+    </tr>
+</table>
+<h2 style="background-color:cornsilk" class="font-weight-light">申请信息</h2>
+<table class="table" cellpadding="20">
+    <tr>
+        <td class="text-center">申请人</td>
+        <td>
+            <select class="form-control" id="txt_Sqr">
+                <option value="-1">--请选择--</option>
+            </select>
+        </td>
+        <td class="text-center">所属部门</td>
+        <td>
+            <select class="form-control" id="txt_Cat">
+                <option value="-1">--请选择--</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">申请时间</td>
+        <td>
+            <input class="form-control" id="txt_ApplicationTime" type="text" />
+        </td>
+        <td class="text-center">领用数量</td>
+        <td>
+            <input class="form-control" id="txt_ReceivedQuantity" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">备注</td>
+        <td colspan="3">
+            <textarea class="form-control" id="txt_Remarks" rows="2" cols="20"></textarea>
+        </td>
+    </tr>
+</table>
+<table style="margin-top:70px;" class="table table-bordered">
+        <thead>
+            <tr style="background-color:#F5F5F5">
+                <td>用品名称</td>
+                <td>规格</td>
+                <td>库存数量</td>
+                <td>领用数量</td>
+                <td>备注</td>
+            </tr>
+        </thead>
+        <tbody id="tb">
+        </tbody>
+    </table>
+<script>
+    $(function () {
+        var id = window.location.href.split("id")[1].split("=")[1];
+        console.log(decodeURI(id));
+        GetCategory();
+        GetApplicant();
+        Show();
+        Thefill(id);
+    })
+    function Thefill(id) {
+        $.ajax({
+            async: false,
+            url: "http://localhost:57726/api/Default/SuppliescollectId",
+            type: "get",
+            dataType: "json",
+            data: { sllId: id },
+            success: function (d) {
+                $("#txt_ThemeName").val(d.themeName);
+                $("#txt_EndTime").val(d.endTime);
+                $("#txt_ApplicationTime").val(d.applicationTime);
+                $("#txt_ReceivedQuantity").val(d.receivedQuantity);
+                $("#txt_Remarks").val(d.remarks);
+            }
+        })
+    }
+    //部门类别下拉框
+    function GetCategory() {
+        $.ajax({
+            async: false,
+            url: 'http://localhost:57726/api/Default/GetDepartment',
+            dataType: "json",
+            type: "get",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#txt_Cat").append("<option value='" + this.dId + "'>" + this.dName + "</option>");
+                })
+            }
+        })
+    }
+    //申请人类别下拉框
+    function GetApplicant() {
+        $.ajax({
+            async: false,
+            url: 'http://localhost:57726/api/Default/GetApplicant',
+            dataType: "json",
+            type: "get",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#txt_Sqr").append("<option value='" + this.aId + "'>" + this.aName + "</option>");
+                })
+            }
+        })
+    }
+    function Show() {
+        $.ajax({
+            url: 'http://localhost:57726/api/Default/GetSuppliescollect/',
+             type: 'get',
+            dataType: 'json',
+            success: function (d) {
+                $("#tb").empty();
+                $(d).each(function () {
+                    var html = '<tr>' +
+                        '<td>' + this.name + '</td>' +
+                        '<td>' + this.specifications + '</td>' +
+                        '<td>' + this.inventoryQuantity + '</td>' +
+                        '<td>' + this.receivedQuantity + '</td>' +
+                        '<td>' + this.remarks + '</td>' +
+                        '</tr>'
+                    $("#tb").append(html);
+                })
+            }
+        })
+    }
+    //返回跳转
+    function Return() {
+        location.href = '/SuppliesCollect/List';
+    }
+</script>
+
+

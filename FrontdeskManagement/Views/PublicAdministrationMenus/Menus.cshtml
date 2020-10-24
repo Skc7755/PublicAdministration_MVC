@@ -1,0 +1,307 @@
+﻿@{
+    Layout = null;
+}
+<link href="~/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<script src="~/layui-v2.5.6/layui/layui.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>行政管理系统</title>
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <script>
+
+        function ToLinks(sType) {
+            switch (sType) {
+                case "a01":
+                    document.getElementById("ifrMain").src = '/Supplieslist/List';
+                    break;
+                case "a02":
+                    document.getElementById("ifrMain").src = '/Supplieslist/Registers';
+                    break;
+                case "a03":
+                    document.getElementById("ifrMain").src = '/Supplieslist/Particulars';
+                    break;
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">行政管理</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            @*<ul class="layui-nav layui-layout-left">
+                    <li class="layui-nav-item"><a href="">控制台</a></li>
+                    <li class="layui-nav-item"><a href="">商品管理</a></li>
+                    <li class="layui-nav-item"><a href="">用户</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">其它系统</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="">邮件管理</a></dd>
+                            <dd><a href="">消息管理</a></dd>
+                            <dd><a href="">授权管理</a></dd>
+                        </dl>
+                    </li>
+                </ul>*@
+            @*<ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                            贤心
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="">基本资料</a></dd>
+                            <dd><a href="">安全设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="">退了</a></li>
+                </ul>*@
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">会议室管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;">会议室列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">新增会议室</a></dd>
+                                    <dd><a href="javascript:;">会议室详情</a></dd>
+                                    <dd><a href="javascript:;">会议室预定查询</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">会议室预定列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">新增会议室预定</a></dd>
+                                    <dd><a href="javascript:;">会议室预定详情</a></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">车辆管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;">车辆列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">新增车辆</a></dd>
+                                    <dd><a href="javascript:;">车辆详情</a></dd>
+                                    <dd><a href="javascript:;">用车申请查询</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">用车申请列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">用车申请</a></dd>
+                                    <dd><a href="javascript:;">用车申请详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">车辆保险列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">车辆保险登记</a></dd>
+                                    <dd><a href="javascript:;">车辆保险详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">车辆维修保养</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">车辆维修保养登记</a></dd>
+                                    <dd><a href="javascript:;">车辆维修保养登记详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">车辆年检列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">车辆年检登记</a></dd>
+                                    <dd><a href="javascript:;">车辆年检登记详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">车辆加油列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">车辆加油登记</a></dd>
+                                    <dd><a href="javascript:;">车辆加油登记详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">车辆事故列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">车辆事故登记</a></dd>
+                                    <dd><a href="javascript:;">车辆事故登记详情</a></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">资产管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;">资产列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">登记资产</a></dd>
+                                    <dd><a href="javascript:;">资产详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">资产领用</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">资产领用申请</a></dd>
+                                    <dd><a href="javascript:;">资产领用申请详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">资产归还</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">资产归还申请</a></dd>
+                                    <dd><a href="javascript:;">资产归还申请详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">资产采购</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">资产采购申请</a></dd>
+                                    <dd><a href="javascript:;">资产采购申请详情</a></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">用品管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:ToLinks('a01');">用品列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:ToLinks('a02');">登记用品</a></dd>
+                                    <dd><a href="javascript:ToLinks('a03');">用品详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">用品领用</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">用品领用申请</a></dd>
+                                    <dd><a href="javascript:;">用品领用申请详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">用品采购</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">用品采购申请</a></dd>
+                                    <dd><a href="javascript:;">用品采购申请详情</a></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">证照管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;">证照列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">登记证照</a></dd>
+                                    <dd><a href="javascript:;">登记详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">证照借用</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">证照借用申请</a></dd>
+                                    <dd><a href="javascript:;">证照借用申请详情</a></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">印章管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;">印章列表</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">登记印章</a></dd>
+                                    <dd><a href="javascript:;">印章详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">用章管理</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">用章申请</a></dd>
+                                    <dd><a href="javascript:;">用章申请详情</a></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">行政事务</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;">通用行政流程</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">通用行政流程单</a></dd>
+                                    <dd><a href="javascript:;">通用行政流程单详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">名片印制申请</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">名片印制申请单</a></dd>
+                                    <dd><a href="javascript:;">名片印制申请详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">行政接待管理</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">行政接待申请</a></dd>
+                                    <dd><a href="javascript:;">行政接待申请详情</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">行政维修申请</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">行政维修申请</a></dd>
+                                    <dd><a href="javascript:;">行政维修申请详情</a></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <iframe id="ifrMain" src="/Supplieslist/List" height="100%" width="100%"></iframe>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © layui.com - 底部固定区域
+        </div>
+    </div>
+    <script src="../src/layui.js"></script>
+    <script>
+        //JavaScript代码区域
+        layui.use('element', function () {
+            var element = layui.element;
+
+        });
+    </script>
+</body>
+</html>
+
+
