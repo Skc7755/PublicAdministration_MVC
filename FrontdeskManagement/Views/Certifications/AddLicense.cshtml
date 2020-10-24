@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewData["Title"] = "证照借用信息";
+}
+
+<h1></h1>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/lib/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+
+<div>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:910px;" onclick="Fh()">
+        <i class="layui-icon">&#xe65c;</i> 返回
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="Sx()">
+        <i class="layui-icon">&#xe9aa;</i> 刷新
+    </button>
+</div>
+<br />
+<h2 style="background-color:cornsilk">基本信息</h2>
+<table class="table table-bordered">
+    <tr>
+        <td class="text-center"><a style="color:red">*</a>主题</td>
+        <td>
+            <input class="form-control" id="txt_Matter" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">结束时间</td>
+        <td>
+            <input class="form-control" id="txt_EndTime" type="date" />
+        </td>
+    </tr>
+</table>
+<h2 style="background-color:cornsilk">申请信息</h2>
+<table class="table table-bordered">
+    <tr>
+        <td class="text-center"><a style="color:red">*</a>申请人</td>
+        <td>
+            <select class="form-control" id="txt_Sqr">
+                <option value="-1">--请选择--</option>
+            </select>
+        </td>
+        <td class="text-center">所属部门</td>
+        <td>
+            <select class="form-control" id="txt_Bm">
+                <option value="-1">--请选择--</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center"><a style="color:red">*</a>申请时间</td>
+        <td>
+            <input class="form-control" id="txt_ApplicationTime" type="date" />
+        </td>
+        <td class="text-center">证照名称</td>
+        <td>
+            <select class="form-control" id="txt_Zz">
+                <option value="-1">--请选择--</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">事由及用途</td>
+        <td colspan="3">
+            <textarea class="form-control" id="txt_Purpose" rows="2" cols="20"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">预借时间</td>
+        <td>
+            <input class="form-control" id="txt_AdvanceTime" type="date" />
+        </td>
+        <td class="text-center">归还时间</td>
+        <td>
+            <input class="form-control" id="txt_ReturenTime" type="date" />
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">实际归还信息</td>
+        <td colspan="3">
+            <textarea class="form-control" id="txt_Information" rows="2" cols="20"></textarea>
+        </td>
+    </tr>
+</table>
+
+<div>
+    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:500px;" onclick="Add()">确认</button>
+    <button type="button" class="layui-btn layui-btn-primary layui-btn-radius">取消</button>
+</div>
+
+<script>
+    $(function () {
+        GetApplicant();//获取申请人的下拉绑定
+        GetDepartment();//获取部门的下拉绑定
+        GetSealName();//获取印章名称下拉绑定
+    })
+    //申请人下拉框
+    function GetApplicant() {
+        $.ajax({
+            url: 'http://localhost:57726/api/default/GetApplicants',
+            dataType: "json",
+            type: "get",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#txt_Sqr").append("<option value='" + this.aId + "'>" + this.aName + "</option>");
+                })
+            }
+        })
+    }
+    //部门下拉框
+    function GetDepartment() {
+        $.ajax({
+            async: false,
+            url: 'http://localhost:57726/api/default/GetDepartments',
+            dataType: "json",
+            type: "get",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#txt_Bm").append("<option value='" + this.dId + "'>" + this.dName + "</option>");
+                })
+            }
+        })
+    }
+    //证照名称下拉框
+    function GetSealName() {
+        $.ajax({
+            async: false,
+            url: 'http://localhost:57726/api/default/GetLicenseNames',
+            dataType: "json",
+            type: "get",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#txt_Zz").append("<option value='" + this.lN_Id + "'>" + this.lN_Name + "</option>");
+                })
+            }
+        })
+    }
+
+    //添加
+    function Add() {
+
+        var obj = {
+            "L_Matter": $("#txt_Matter").val(),
+            "L_EndTime": $("#txt_EndTime").val(),
+            "A_Id": parseInt($("#txt_Sqr").val()),
+            "D_Id": parseInt($("#txt_Bm").val()),
+            "L_ApplicationTime": $('#txt_ApplicationTime').val(),
+            "LN_Id": parseInt($("#txt_Zz").val()),
+            "L_Purpose": $('#txt_Purpose').val(),
+            "L_AdvanceTime": $("#txt_AdvanceTime").val(),
+            "L_ReturenTime": $("#txt_ReturenTime").val(),
+            "L_Information": $("#txt_Information").val(),
+        }
+
+        if (obj.L_Matter == "") {
+            alert("主题不可以为空");
+            window.location.reload();
+            return;
+        }
+        var cc = JSON.stringify(obj);
+        console.log(obj);
+        $.ajax({
+            url: 'http://localhost:57726/api/default/AddLicense',
+            type: 'post',
+            dataType: 'JSON',
+            data: cc,
+            contentType: 'application/json',
+            success: function (d) {
+                if (d > 0) {
+                    alert("添加成功");
+                    location.href = "/Certifications/Show";
+                }
+            }
+        })
+    }
+    //刷新页面
+    function Sx() {
+        location.href = "/Certifications/AddLicense";
+    }
+    //列表返回
+    function Fh() {
+        location.href = "/Certifications/Show";
+    }
+</script>
