@@ -1,8 +1,8 @@
 ﻿@{
     Layout = null;
 }
-<link href="~/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
 <script src="~/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +22,46 @@
                     break;
                 case "a03":
                     document.getElementById("ifrMain").src = '/Supplieslist/Particulars';
+                    break;
+                //证照列表
+                case "b01":
+                    document.getElementById("ifrMain").src = '/Certifications/Index';
+                    break;
+                case "b011":
+                    document.getElementById("ifrMain").src = '/Certifications/AddCertification';
+                    break;
+                case "b012":
+                    document.getElementById("ifrMain").src = '/Certifications/Back';
+                    break;
+                //证照借用
+                case "b02":
+                    document.getElementById("ifrMain").src = '/Certifications/Show';
+                    break;
+                case "b021":
+                    document.getElementById("ifrMain").src = '/Certifications/AddLicense';
+                    break;
+                case "b022":
+                    document.getElementById("ifrMain").src = '/Certifications/GetLicParticulars';
+                    break;
+                //印章列表
+                case "b03":
+                    document.getElementById("ifrMain").src = '/Stamp/Index';
+                    break;
+                case "b031":
+                    document.getElementById("ifrMain").src = '/Stamp/AddStamp';
+                    break;
+                case "b032":
+                    document.getElementById("ifrMain").src = '/Stamp/GetStaParticulars';
+                    break;
+                //用章管理
+                case "b04":
+                    document.getElementById("ifrMain").src = '/Stamp/Show';
+                    break;
+                case "b041":
+                    document.getElementById("ifrMain").src = '/Stamp/AddBySeal';
+                    break;
+                case "b042":
+                    document.getElementById("ifrMain").src = '/Stamp/Back';
                     break;
             }
         }
@@ -212,17 +252,17 @@
                         <a class="" href="javascript:;">证照管理</a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a href="javascript:;">证照列表</a>
+                                <a href="javascript:ToLinks('b01');">证照列表</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a href="javascript:;">登记证照</a></dd>
-                                    <dd><a href="javascript:;">登记详情</a></dd>
+                                    <dd><a href="javascript:ToLinks('b011');">登记证照</a></dd>
+                                    <dd><a href="javascript:ToLinks('b012');">登记详情</a></dd>
                                 </dl>
                             </dd>
                             <dd>
-                                <a href="javascript:;">证照借用</a>
+                                <a href="javascript:ToLinks('b02');">证照借用</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a href="javascript:;">证照借用申请</a></dd>
-                                    <dd><a href="javascript:;">证照借用申请详情</a></dd>
+                                    <dd><a href="javascript:ToLinks('b011');">证照借用申请</a></dd>
+                                    <dd><a href="javascript:ToLinks('b012');">证照借用申请详情</a></dd>
                                 </dl>
                             </dd>
                         </dl>
@@ -231,17 +271,17 @@
                         <a class="" href="javascript:;">印章管理</a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a href="javascript:;">印章列表</a>
+                                <a href="javascript:ToLinks('b03');">印章列表</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a href="javascript:;">登记印章</a></dd>
-                                    <dd><a href="javascript:;">印章详情</a></dd>
+                                    <dd><a href="javascript:ToLinks('b031');">登记印章</a></dd>
+                                    <dd><a href="javascript:ToLinks('b032');">印章详情</a></dd>
                                 </dl>
                             </dd>
                             <dd>
-                                <a href="javascript:;">用章管理</a>
+                                <a href="javascript:ToLinks('b04');">用章管理</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a href="javascript:;">用章申请</a></dd>
-                                    <dd><a href="javascript:;">用章申请详情</a></dd>
+                                    <dd><a href="javascript:ToLinks('b041');">用章申请</a></dd>
+                                    <dd><a href="javascript:ToLinks('b041');">用章申请详情</a></dd>
                                 </dl>
                             </dd>
                         </dl>

@@ -32,14 +32,46 @@
     <tbody id="tb">
     </tbody>
 </table>
+<div style="margin-left:50%;">
+    <table>
+        <tr>
+            <td><input type="button" value="首页" class="layui-btn layui-btn-primary" onclick="Show('Frist')" /></td>
+            <td><input type="button" value="上一页" class="layui-btn layui-btn-primary" onclick="Show('Prev')" /></td>
+            <td><input type="button" value="下一页" class="layui-btn layui-btn-primary" onclick="Show('Next')" /></td>
+            <td>
+                <input type="button" class="layui-btn layui-btn-primary" value="尾页" onclick="Show('Last')" />
+                <input type="hidden" value="1" id="pageindex" />
+            </td>
 
+        </tr>
+    </table>
+</div>
 <script>
     //文档就绪函数
     Show();
     //显示查询
-    function Show() {
+    function Show(page) {
+        var we = 1;
+        switch (page) {
+            case 'Frist':
+                $("#pageindex").val(1);
+                break;
+            case 'Prev':
+                $("#pageindex").val(Number($("#pageindex").val()) - Number(1));
+                break;
+            case 'Next':
+                $("#pageindex").val(Number($("#pageindex").val()) + Number(1));
+                break;
+            case 'Last':
+                $("#pageindex").val(we);
+                break;
+        }
+        var obj = {};
+        obj.pageindex = $("#pageindex").val();
+        obj.pagesize = 2;
         $.ajax({
             url: 'http://localhost:57726/api/default/GetStamps',
+            data: { pageindex: obj.pageindex, pagesize: obj.pagesize },
             type: 'get',
             dataType: 'json',
             success: function (d) {
@@ -61,17 +93,19 @@
 
     //删除印章列表信息
     function Del(id) {
-        $.ajax({
-            url: 'http://localhost:57726/api/default/DelStamp?dstId=' + id,
-            type: 'post',
-            dataType: 'json',
-            success: function (d) {
-                if (d > 0) {
-                    alert("删除成功");
-                    Show();
+        if (confirm("确认删除嘛?")) {
+            $.ajax({
+                url: 'http://localhost:57726/api/default/DelStamp?dstId=' + id,
+                type: 'post',
+                dataType: 'json',
+                success: function (d) {
+                    if (d > 0) {
+                        alert("删除成功");
+                        Show();
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     //登记跳转

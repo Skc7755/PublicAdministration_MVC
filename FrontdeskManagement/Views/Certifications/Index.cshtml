@@ -39,7 +39,20 @@
     <tbody id="tb">
     </tbody>
 </table>
+<div style="margin-left:50%;">
+    <table>
+        <tr>
+            <td><input type="button" value="首页" class="layui-btn layui-btn-primary" onclick="Show('Frist')" /></td>
+            <td><input type="button" value="上一页" class="layui-btn layui-btn-primary" onclick="Show('Prev')" /></td>
+            <td><input type="button" value="下一页" class="layui-btn layui-btn-primary" onclick="Show('Next')" /></td>
+            <td>
+                <input type="button" class="layui-btn layui-btn-primary" value="尾页" onclick="Show('Last')" />
+                <input type="hidden" value="1" id="pageindex" />
+            </td>
 
+        </tr>
+    </table>
+</div>
 <script>
     //文档就绪函数
     $(function () {
@@ -47,10 +60,28 @@
     })
 
     //证照列表显示查询
-    function Show() {
+    function Show(page) {
+        var we = 1;
+        switch (page) {
+            case 'Frist':
+                $("#pageindex").val(1);
+                break;
+            case 'Prev':
+                $("#pageindex").val(Number($("#pageindex").val()) - Number(1));
+                break;
+            case 'Next':
+                $("#pageindex").val(Number($("#pageindex").val()) + Number(1));
+                break;
+            case 'Last':
+                $("#pageindex").val(we);
+                break;
+        }
+        var obj = {};
+        obj.pageindex = $("#pageindex").val();
+        obj.pagesize = 2;
         $.ajax({
             url: 'http://localhost:57726/api/default/GetCertifications',
-            data: { cername: $("#demoReload").val() },
+            data: { cername: $("#demoReload").val(), pageindex: obj.pageindex, pagesize: obj.pagesize },
             type: 'get',
             dataType: 'json',
             success: function (d) {
@@ -69,7 +100,7 @@
                         '<td>' + this.c_Annual + '</td>' +
                         '<td>' + c_validity + '</td>' +
                         '<td>' + this.c_Loaner + '</td>' +
-                        '<td><button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="Del(' + this.c_Id + ')><i class="layui-icon"></i> 删除</button></td > ' +
+                        '<td><button type="button" class="layui-btn layui-btn-normal layui-btn-sm" onclick="Del(' + this.c_Id + ')"><i class="layui-icon"></i></button></td > ' +
                         '</tr>'
                     $("#tb").append(html);
                 })
@@ -79,17 +110,19 @@
 
     //删除证照列表信息
     function Del(id) {
-        $.ajax({
-            url: 'http://localhost:57726/api/default/DelCertification?dcerId=' + id,
-            type: 'post',
-            dataType: 'json',
-            success: function (d) {
-                if (d > 0) {
-                    alert("删除成功");
-                    Show();
+        if (confirm("确认删除嘛？")) {
+            $.ajax({
+                url: 'http://localhost:57726/api/default/DelCertification?dcerId=' + id,
+                type: 'post',
+                dataType: 'json',
+                success: function (d) {
+                    if (d > 0) {
+                        alert("删除成功");
+                        Show();
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     //添加页面跳转

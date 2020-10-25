@@ -18,6 +18,9 @@
     </button>
 </div>
 <br />
+<button type="button" class="layui-btn layui-btn-sm layui-btn-primary" onclick="Dy()">
+    <i class="layui-icon">&#xe66d;</i>打印
+</button>
 <h2 style="background-color:cornsilk">基本信息</h2>
 <table class="table table-bordered">
     <tr>
@@ -194,5 +197,10 @@
     //返回列表
     function Fh() {
         location.href = "/Stamp/Show";
+    }
+
+    //全局打印
+    function Dy() {
+        window.print(FanTian);
     }
 </script>

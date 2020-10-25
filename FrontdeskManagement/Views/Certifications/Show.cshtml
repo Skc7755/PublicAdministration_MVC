@@ -5,7 +5,6 @@
 
 <h1></h1>
 
-
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/layui-v2.5.6/layui/layui.js"></script>
 <link href="~/lib/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
@@ -45,7 +44,20 @@
     <tbody id="tb">
     </tbody>
 </table>
+<div style="margin-left:50%;">
+    <table>
+        <tr>
+            <td><input type="button" value="首页" class="layui-btn layui-btn-primary" onclick="Show('Frist')" /></td>
+            <td><input type="button" value="上一页" class="layui-btn layui-btn-primary" onclick="Show('Prev')" /></td>
+            <td><input type="button" value="下一页" class="layui-btn layui-btn-primary" onclick="Show('Next')" /></td>
+            <td>
+                <input type="button" class="layui-btn layui-btn-primary" value="尾页" onclick="Show('Last')" />
+                <input type="hidden" value="1" id="pageindex" />
+            </td>
 
+        </tr>
+    </table>
+</div>
 <script>
     //下拉样式
     layui.use('form', function () {
@@ -65,10 +77,28 @@
     //文档就绪函数
     Show();
     //证照借用显示查询
-    function Show() {
+    function Show(page) {
+        var we = 1;
+        switch (page) {
+            case 'Frist':
+                $("#pageindex").val(1);
+                break;
+            case 'Prev':
+                $("#pageindex").val(Number($("#pageindex").val()) - Number(1));
+                break;
+            case 'Next':
+                $("#pageindex").val(Number($("#pageindex").val()) + Number(1));
+                break;
+            case 'Last':
+                $("#pageindex").val(we);
+                break;
+        }
+        var obj = {};
+        obj.pageindex = $("#pageindex").val();
+        obj.pagesize = 2;
         $.ajax({
             url: 'http://localhost:57726/api/default/GetLicenses',
-            data: { licmatter: $("#demoReload").val(), depar: $("#modules").val() },
+            data: { licmatter: $("#demoReload").val(), depar: $("#modules").val(), pageindex: obj.pageindex, pagesize: obj.pagesize },
             type: 'get',
             dataType: 'json',
             success: function (d) {
@@ -82,7 +112,7 @@
                         '<td>' + this.l_ApplicationTime + '</td>' +
                         '<td>' + this.lN_Name + '</td>' +
                         '<td>' + this.l_AdvanceTime + '至' + this.l_ReturenTime + '</td>' +
-                        '<td><button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="Del(' + this.l_Id + ')><i class="layui-icon"></i> 删除</button></td > ' +
+                        '<td><button type="button" class="layui-btn layui-btn-normal layui-btn-sm" onclick="Del(' + this.l_Id + ')"><i class="layui-icon"></i></button></td > ' +
                         '</tr>'
                     $("#tb").append(html);
                 })
@@ -92,17 +122,19 @@
 
     //删除证照借用信息
     function Del(id) {
-        $.ajax({
-            url: 'http://localhost:57726/api/default/DelCerLicense?dlicId=' + id,
-            type: 'post',
-            dataType: 'json',
-            success: function (d) {
-                if (d > 0) {
-                    alert("删除成功");
-                    Show();
+        if (confirm("确认删除嘛?")) {
+            $.ajax({
+                url: 'http://localhost:57726/api/default/DelCerLicense?dlicId=' + id,
+                type: 'post',
+                dataType: 'json',
+                success: function (d) {
+                    if (d > 0) {
+                        alert("删除成功");
+                        Show();
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     //登记跳转
