@@ -23,6 +23,24 @@
                 case "a03":
                     document.getElementById("ifrMain").src = '/Supplieslist/Particulars';
                     break;
+                case "a04":
+                    document.getElementById("ifrMain").src = '/SuppliesCollect/List';
+                    break;
+                case "a05":
+                    document.getElementById("ifrMain").src = '/SuppliesCollect/Registers';
+                    break;
+                case "a06":
+                    document.getElementById("ifrMain").src = '/SuppliesCollect/Particulars';
+                    break;
+                case "a07":
+                    document.getElementById("ifrMain").src = '/Suppliesprocurement/List';
+                    break;
+                case "a08":
+                    document.getElementById("ifrMain").src = '/Suppliesprocurement/Registers';
+                    break;
+                case "a09":
+                    document.getElementById("ifrMain").src = '/Suppliesprocurement/Particulars';
+                    break;
             }
         }
     </script>
@@ -193,17 +211,17 @@
                                 </dl>
                             </dd>
                             <dd>
-                                <a href="javascript:;">用品领用</a>
+                                <a href="javascript:ToLinks('a04');">用品领用</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a href="javascript:;">用品领用申请</a></dd>
-                                    <dd><a href="javascript:;">用品领用申请详情</a></dd>
+                                    <dd><a href="javascript:ToLinks('a05');">用品领用申请</a></dd>
+                                    <dd><a href="javascript:ToLinks('a06');">用品领用申请详情</a></dd>
                                 </dl>
                             </dd>
                             <dd>
-                                <a href="javascript:;">用品采购</a>
+                                <a href="javascript:ToLinks('a07');">用品采购</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a href="javascript:;">用品采购申请</a></dd>
-                                    <dd><a href="javascript:;">用品采购申请详情</a></dd>
+                                    <dd><a href="javascript:ToLinks('a08');">用品采购申请</a></dd>
+                                    <dd><a href="javascript:ToLinks('a09');">用品采购申请详情</a></dd>
                                 </dl>
                             </dd>
                         </dl>
@@ -290,7 +308,7 @@
 
         <div class="layui-footer">
             <!-- 底部固定区域 -->
-            © layui.com - 底部固定区域
+
         </div>
     </div>
     <script src="../src/layui.js"></script>

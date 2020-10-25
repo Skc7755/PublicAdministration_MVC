@@ -10,7 +10,6 @@
 <fieldset class="layui-elem-field layui-field-title site-demo-button" style="margin-top: 30px;">
     <legend>用品列表</legend>
 </fieldset>
-
 <div>
     <div class="layui-input-inline layui-form">
         <select id="service" name="service">
@@ -43,6 +42,7 @@
         </tbody>
     </table>
 </div>
+<table class="layui-hide" id="test"> </table>
 <script>
     layui.use('form', function () {
         var form = layui.form;
@@ -60,10 +60,10 @@
             }
         })
     });
+
     $(function () {
         Show();
     })
-
 
     function Show() {
         $.ajax({

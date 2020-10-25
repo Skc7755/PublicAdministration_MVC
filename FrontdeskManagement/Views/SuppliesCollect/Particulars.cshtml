@@ -16,6 +16,7 @@
         <i class="layui-icon">&#xe9aa;</i> 刷新
     </button>
 </div>
+
 <br />
 <h2 style="background-color:cornsilk" class="font-weight-light">基本信息</h2>
 <table class="table" cellpadding="20">
@@ -66,18 +67,18 @@
     </tr>
 </table>
 <table style="margin-top:70px;" class="table table-bordered">
-        <thead>
-            <tr style="background-color:#F5F5F5">
-                <td>用品名称</td>
-                <td>规格</td>
-                <td>库存数量</td>
-                <td>领用数量</td>
-                <td>备注</td>
-            </tr>
-        </thead>
-        <tbody id="tb">
-        </tbody>
-    </table>
+    <thead>
+        <tr style="background-color:#F5F5F5">
+            <td>用品名称</td>
+            <td>规格</td>
+            <td>库存数量</td>
+            <td>领用数量</td>
+            <td>备注</td>
+        </tr>
+    </thead>
+    <tbody id="tb">
+    </tbody>
+</table>
 <script>
     $(function () {
         var id = window.location.href.split("id")[1].split("=")[1];
@@ -97,6 +98,16 @@
             success: function (d) {
                 $("#txt_ThemeName").val(d.themeName);
                 $("#txt_EndTime").val(d.endTime);
+                $("#txt_Sqr option").each(function () {
+                    if (this.value == d.dId) {
+                        $(this).prop("selected", "selected");
+                    }
+                })
+                $("#txt_Cat option").each(function () {
+                    if (this.value == d.aId) {
+                        $(this).prop("selected", "selected");
+                    }
+                })
                 $("#txt_ApplicationTime").val(d.applicationTime);
                 $("#txt_ReceivedQuantity").val(d.receivedQuantity);
                 $("#txt_Remarks").val(d.remarks);
@@ -134,7 +145,7 @@
     function Show() {
         $.ajax({
             url: 'http://localhost:57726/api/Default/GetSuppliescollect/',
-             type: 'get',
+            type: 'get',
             dataType: 'json',
             success: function (d) {
                 $("#tb").empty();

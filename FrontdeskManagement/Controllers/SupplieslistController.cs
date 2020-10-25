@@ -39,6 +39,10 @@ namespace FrontdeskManagement.Controllers
         {
             return View();
         }
+        public IActionResult Particulars1()
+        {
+            return View();
+        }
 
     }
 }
