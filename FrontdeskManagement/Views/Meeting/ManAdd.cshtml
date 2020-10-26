@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewData["Title"] = "ManAdd";
+}
+
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<table style="margin:0 auto">
+    <tr><td colspan="4"><h1>预定会议室</h1></td></tr>
+    <tr style="background-color:antiquewhite"><td colspan="4">基本信息</td></tr>
+    <tr>
+        <td style="width:120px" class="text-right">主题:</td>
+        <td><input id="ti" type="text" /></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr style="background-color:antiquewhite"><td colspan="4">申请信息</td></tr>
+    <tr>
+        <td class="text-right">申请人:</td>
+        <td><input id="ren" type="text" /></td>
+        <td class="text-right">
+            所属部门：
+        </td>
+        <td>
+            <select id="Select1">
+                <option value="1">总经办</option>
+                <option value="2">人事部</option>
+                <option value="3">财务部</option>
+                <option value="4">销售部</option>
+                <option value="5">技术部</option>
+                <option value="6">保安部</option>
+
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="text-right">申请时间：</td>
+        <td><input id="Stime" type="text" /></td>
+        <td class="text-right">
+            预定会议室：
+
+        </td>
+        <td>
+            <select id="yuding">
+                <option value="1">一号会议室</option>
+                <option value="2">二号会议室</option>
+                <option value="3">三号会议室</option>
+                <option value="4">四号会议室</option>
+                <option value="5">五号会议室</option>
+                <option value="6">六号会议室</option>
+                <option value="7">七号会议室</option>
+                <option value="8">八号会议室</option>
+                <option value="9">九号会议室</option>
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+
+        <td class="text-right">开始时间：</td>
+        <td><input id="KTime" type="text" /></td>
+        <td class="text-right">结束时间：</td>
+        <td><input id="JTime" type="text" /></td>
+    </tr>
+
+    <tr>
+        <td class="text-right">使用事由：</td>
+        <td><textarea id="shi" rows="3" cols="50"></textarea></td>
+    </tr>
+    <tr>
+        <td class="text-right">备注：</td>
+        <td><textarea id="bei" rows="3" cols="50"></textarea></td>
+    </tr>
+    <tr>
+        <td class="text-right">实际使用情况：</td>
+        <td rows="3"><input id="qingk" type="text" /></td>
+    </tr>
+    <tr>
+        <td class="text-right">附件：</td>
+        <td rows="3"><input id="File1" type="file" /></td>
+    </tr>
+    <tr>
+        <td style="text-align:center" colspan="4">
+            <input type="button" value="保存" onclick="add()" style="background-color
+    :cornflowerblue" />
+        </td>
+
+
+
+    </tr>
+</table>
+<script>
+    function add() {
+
+        var Man = {
+            "Man_Theme": $("#ti").val(),
+            "Man_Applicant": $("#ren").val(),
+            "Man_Department": parseInt($("#Select1").val()),
+            "Man_ApplicatTime": $("#Stime").val(),
+            "Man_Reserve": parseInt($("#yuding").val()),
+            "Man_StartTime":$("#KTime").val(),
+            "Man_EndTime": $("#JTime").val(),
+            "Man_Reasons": $("#shi").val(),
+            "Man_Remarks": $("#bei").val(),
+            "Man_Actual": $("#qingk").val(),
+            "Man_Enclosure": $("#File1").val(),
+        }
+
+        var josn1 = JSON.stringify(Man);
+        console.log(Man);
+        $.ajax({
+
+            url: "http://localhost:57726/api/default/ManAdd",
+            data: josn1,
+            type: "post",
+            dataType: "json",
+            contentType: 'application/json',
+            success: function (d) {
+                if (d > 0) {
+                    alert("添加成功！");
+                    location.href = "/Meeting/Show1";
+                }
+                else {
+                    alert("添加失败！");
+
+                }
+
+            }
+        })
+    }
+</script>

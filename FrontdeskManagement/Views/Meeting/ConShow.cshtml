@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "ConShow";
+}
+<input id="Text1" type="hidden" value="@ViewBag.id" />
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<h1>会议室详情</h1>
+<table style="margin:0 auto">
+    <tr>
+        <td>名称：</td>
+        <td><input id="ming" type="text" /></td>
+    </tr>
+    <tr>
+        <td>编号：</td>
+        <td><input id="bian" type="text" /></td>
+    </tr>
+    <tr>
+        <td>容量：</td>
+        <td><input id="rong" type="text" /></td>
+    </tr>
+    <tr>
+        <td>位置：</td>
+        <td><input id="wei" type="text" /></td>
+    </tr>
+    <tr>
+        <td>内部设备：</td>
+        <td><input id="she" type="text" /></td>
+    </tr>
+    <tr>
+        <td>管理人：</td>
+        <td><input id="guan" type="text" /></td>
+    </tr>
+    <tr>
+        <td>
+            状态：
+        </td>
+        <td>
+            <input id="Radio1" type="radio" name="zt" value="1" checked="checked" />正常
+            <input id="Radio2" type="radio" name="zt" value="2" />维修
+            <input id="Radio3" type="radio" name="zt" value="3" />报废
+        </td>
+    </tr>
+    <tr>
+        <td>相关描述：</td>
+        <td><input id="miao" type="text" /></td>
+    </tr>
+    <tr>
+        <td>相关文件：</td>
+        <td><input id="fu" type="file" /></td>
+    </tr>
+    <tr>
+        <td>事由：</td>
+        <td><input id="tu" type="text" /></td>
+    </tr>
+
+</table>
+<script>
+
+    $(function () {
+
+        show1();
+    })
+
+    function show1() {
+        $.ajax({
+            url: "http://localhost:57726/api/default/fi?id=" + $("#Text1").val(),
+            type: "get",
+            dataType: "json",
+            success: function (d) {
+                $("#ming").val(d.con_Name);
+                $("#bian").val(d.con_No);
+                $("#rong").val(d.con_Capacity);
+                $("#wei").val(d.con_Position);
+                $("#she").val(d.con_Interiors);
+                $("#guan").val(d.con_Admin);
+                $(".zt").val(d.con_State);
+                $("#miao").val(d.con_Describe);
+                $("#fu").val(d.con_Attach);
+                $("#tu").val(d.con_Picture);
+
+            }
+
+        })
+
+    }
+
+</script>

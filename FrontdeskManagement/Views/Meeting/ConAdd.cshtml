@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewData["Title"] = "ConAdd";
+}
+
+<h1>添加会议室</h1>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<table style="margin:0 auto"  >
+    <tr>
+        <td>名称：</td>
+        <td><input id="ming" type="text" /></td>
+    </tr>
+    <tr>
+        <td>编号：</td>
+        <td><input id="bian" type="text" /></td>
+    </tr>
+    <tr>
+        <td>容量：</td>
+        <td><input id="rong" type="text" /></td>
+    </tr>
+    <tr>
+        <td>位置：</td>
+        <td><input id="wei" type="text" /></td>
+    </tr>
+    <tr>
+        <td>内部设备：</td>
+        <td><input id="she" type="text" /></td>
+    </tr>
+    <tr>
+        <td>管理人：</td>
+        <td><input id="guan" type="text" /></td>
+    </tr>
+    <tr>
+        <td>
+            状态：
+        </td>
+        <td>
+            <input id="Radio1" type="radio" name="zt" value="1" />正常
+            <input id="Radio2" type="radio" name="zt" value="2" />维修
+            <input id="Radio3" type="radio" name="zt" value="3" />报废
+        </td>
+    </tr>
+    <tr>
+        <td>相关描述：</td>
+        <td><input id="miao" type="text" /></td>
+    </tr>
+    <tr>
+        <td>相关文件：</td>
+        <td><input id="fu" type="file" /></td>
+    </tr>
+    <tr>
+        <td>事由：</td>
+        <td><input id="tu" type="text" /></td>
+    </tr>
+    <tr>
+        <td style="text-align:center" colspan="2">
+            <input type="button" value="保存" onclick="bao()" />
+        </td>
+    </tr>
+</table>
+<script>
+    function bao() {
+
+        var Con = {
+            "Con_Name": $("#ming").val(),
+            "Con_No": parseInt($("#bian").val()),
+            "Con_Capacity": parseInt($("#rong").val()),
+            "Con_Position": $("#wei").val(),
+            "Con_Interiors": $("#she").val(),
+            "Con_Admin": $("#guan").val(),
+            "Con_State": parseInt($("input[name=zt]:checked").val() ? 1 : 0),
+            "Con_Describe": $("#miao").val(),
+            "Con_Attach": $("#fu").val(),
+            "Con_Picture": $("#tu").val(),
+        }
+
+        var josn2 = JSON.stringify(Con);
+        console.log(Con);
+        $.ajax({
+
+            url: "http://localhost:57726/api/default/ConAdd",
+            data: josn2,
+            type: "post",
+            dataType: "json",
+            contentType: 'application/json',
+            success: function (d) {
+                if (d > 0) {
+                    alert("添加成功！");
+                    location.href = "/Meeting/Show";
+                }
+                else {
+                    alert("添加失败！");
+                }
+
+            }
+        })
+    }
+</script>

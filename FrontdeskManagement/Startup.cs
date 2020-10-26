@@ -23,6 +23,18 @@ namespace FrontdeskManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CustomCorsPolicy", policy =>
+                {
+                    // 设定允许跨域的来源，有多个可以用','隔开
+                    policy.WithOrigins("http://localhost:57726", "http://localhost:64380")//mvc端口
+                    .AllowAnyHeader()//请求头
+                    .AllowAnyMethod()//请求方法
+                    .AllowAnyOrigin();//返回值
+
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

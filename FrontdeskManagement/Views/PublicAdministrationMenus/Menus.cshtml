@@ -23,6 +23,73 @@
                 case "a03":
                     document.getElementById("ifrMain").src = '/Supplieslist/Particulars';
                     break;
+<<<<<<< HEAD
+<<<<<<< HEAD
+                //证照列表
+                case "b01":
+                    document.getElementById("ifrMain").src = '/Certifications/Index';
+                    break;
+                case "b011":
+                    document.getElementById("ifrMain").src = '/Certifications/AddCertification';
+                    break;
+                case "b012":
+                    document.getElementById("ifrMain").src = '/Certifications/Back';
+                    break;
+                
+
+                //证照借用
+                case "b02":
+                    document.getElementById("ifrMain").src = '/Certifications/Show';
+                    break;
+                case "b021":
+                    document.getElementById("ifrMain").src = '/Certifications/AddLicense';
+                    break;
+                case "b022":
+                    document.getElementById("ifrMain").src = '/Certifications/GetLicParticulars';
+                    break;
+                //印章列表
+                case "b03":
+                    document.getElementById("ifrMain").src = '/Stamp/Index';
+                    break;
+                case "b031":
+                    document.getElementById("ifrMain").src = '/Stamp/AddStamp';
+                    break;
+                case "b032":
+                    document.getElementById("ifrMain").src = '/Stamp/GetStaParticulars';
+                    break;
+                //用章管理
+                case "b04":
+                    document.getElementById("ifrMain").src = '/Stamp/Show';
+                    break;
+                case "b041":
+                    document.getElementById("ifrMain").src = '/Stamp/AddBySeal';
+                    break;
+                case "b042":
+                    document.getElementById("ifrMain").src = '/Stamp/Back';
+                    break;
+                //会议室管理
+                case "c01":
+                    document.getElementById("ifrMain").src = '/Meeting/Show';
+                    break;
+                case "c011":
+                    document.getElementById("ifrMain").src = '/Meeting/ConAdd';
+                    break;
+                case "c012":
+                    document.getElementById("ifrMain").src = '/Meeting/ConShow';
+                    break;
+                case "c02":
+                    document.getElementById("ifrMain").src = '/Meeting/Show1';
+                    break;
+                case "c021":
+                    document.getElementById("ifrMain").src = '/Meeting/ManAdd';
+                    break;
+                case "c022":
+                    document.getElementById("ifrMain").src = '/Meeting/ManShow';
+                    break;
+=======
+>>>>>>> 3ad6f16e6afe1bb9b082166e0fae3a9da8cb23be
+=======
+>>>>>>> 3ad6f16e6afe1bb9b082166e0fae3a9da8cb23be
             }
         }
     </script>
@@ -76,18 +143,18 @@
                         <a class="" href="javascript:;">会议室管理</a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a href="javascript:;">会议室列表</a>
+                                <a href="javascript:ToLinks('c01');">会议室列表</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a href="javascript:;">新增会议室</a></dd>
-                                    <dd><a href="javascript:;">会议室详情</a></dd>
-                                    <dd><a href="javascript:;">会议室预定查询</a></dd>
+                                    <dd><a href="javascript:ToLinks('c011');">新增会议室</a></dd>
+                                    <dd><a href="javascript:ToLinks('c012');">会议室详情</a></dd>
+                                    
                                 </dl>
                             </dd>
                             <dd>
-                                <a href="javascript:;">会议室预定列表</a>
+                                <a href="javascript:ToLinks('c02');">会议室预定列表</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a href="javascript:;">新增会议室预定</a></dd>
-                                    <dd><a href="javascript:;">会议室预定详情</a></dd>
+                                    <dd><a href="javascript:ToLinks('c021');">新增会议室预定</a></dd>
+                                    <dd><a href="javascript:ToLinks('c022');">会议室预定详情</a></dd>
                                 </dl>
                             </dd>
                         </dl>

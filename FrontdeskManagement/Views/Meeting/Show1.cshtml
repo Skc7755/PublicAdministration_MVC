@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "Show1";
+}
+
+<h1>预定会议室列表</h1>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<input onclick="yu()" type="button" value="预定会议室" />
+<input onclick="kan()" type="button" value="会议室列表" />
+<table class="table table-bordered ">
+    <tr class="table table-hover">
+        <th>主题</th>
+        <th>申请人</th>
+        <th>所属部门</th>
+        <th>预定会议室</th>
+        <th>时间段</th>
+       
+    </tr>
+</table>
+<script>
+    show1();
+    function show1() {
+        $.ajax({
+            url: "http://localhost:57726/api/default/manage",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $(data).each(function (index, ele) {
+                    var hui = "一号会议室";
+                    if (ele.man_Reserve == 2) {
+
+                        hui = "二号会议室";
+                    }
+                    if (ele.man_Reserve == 3) {
+
+                        hui = "三号会议室";
+                    }
+                    if (ele.man_Reserve == 4) {
+
+                        hui = "四号会议室";
+                    }
+                    if (ele.man_Reserve == 5) {
+
+                        hui = "五号会议室";
+                    }
+                    if (ele.man_Reserve == 6) {
+
+                        hui = "六号会议室";
+                    }
+                    if (ele.man_Reserve == 7) {
+
+                        hui = "七号会议室";
+
+                    }
+                    if (ele.man_Reserve == 8) {
+
+                        hui = "八号会议室";
+                    }
+                    if (ele.man_Reserve == 9) {
+
+                        hui = "九号会议室";
+                    }
+                    
+
+                    var bu = "总经办";
+                    if (ele.man_Department == 2) {
+
+                        bu = "人事部";
+                    }
+                    if (ele.man_Department == 3) {
+
+                        bu = "财务部";
+                    }
+                    if (ele.man_Department == 4) {
+
+                        bu = "销售部";
+                    }
+                    if (ele.man_Department == 5) {
+
+                        bu = "技术部";
+                    }
+                    if (ele.man_Department == 6) {
+
+                        bu = "保安部";
+                    }
+                   
+                    var time = ele.man_StartTime + '~' + ele.man_EndTime;
+                    var tr = '<tr>'
+                        + '<td><a href="#" onclick="go('+ ele.man_ID +')">' + ele.man_Theme + '</a></td > '
+                        + '<td>' + ele.man_Applicant + '</td>'
+                        + '<td>' + bu + '</td>'
+                        + '<td>' + hui + '</td>'
+                        + '<td>' + time + '</td>'
+
+                        + '</tr>';
+                    $("table").append(tr);
+                })
+            }
+
+        })
+
+    }
+    function yu() {
+        location.href = "/Meeting/ManAdd";
+    }
+    function kan() {
+        location.href = "/Meeting/Show";
+    }
+    function go(id)
+    {
+        location.href = "/Meeting/ManShow?id=" + id;
+    }
+</script>
