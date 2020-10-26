@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewData["Title"] = "证照列表详情";
+}
+
+<h1></h1>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/lib/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+
+<div>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:910px;" onclick="Fh()">
+        <i class="layui-icon">&#xe65c;</i> 返回
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="FanTian()">
+        <i class="layui-icon">&#xe9aa;</i> 刷新
+    </button>
+</div>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <td>名称</td>
+        <td>
+            <input class="form-control" id="txt_Name" type="text" />
+        </td>
+        <td>编号</td>
+        <td>
+            <input class="form-control" id="txt_Number" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>签发机关</td>
+        <td>
+            <input class="form-control" id="txt_Authority" type="text" />
+        </td>
+        <td>签发日期</td>
+        <td>
+            <input class="form-control" id="txt_Date" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>是否年审</td>
+        <td>
+            <input id="Review_shi" type="radio" name="sad" />是
+            <input id="Review_fou" type="radio" name="sad"/>否
+        </td>
+        <td>下次年审日期</td>
+        <td>
+            <input class="form-control" id="txt_Annual" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>有效期</td>
+        <td>
+            <input id="Validity_shi" type="radio" name="asd" />永久
+            <input id="Validity_fou" type="radio" name="asd" />非永久
+        </td>
+        <td>下次年审日期</td>
+        <td>
+            <input class="form-control" id="txt_Annuall" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>借用人</td>
+        <td>
+            <input class="form-control" id="txt_Loaner" type="text" />
+        </td>
+        <td>管理人</td>
+        <td>
+            <input class="form-control" id="txt_Manager" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>描述</td>
+        <td colspan="3">
+            <textarea class="form-control" id="txt_Description" rows="2" cols="20"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>附件</td>
+        <td>
+            <input id="File1" type="file" />
+        </td>
+    </tr>
+</table>
+
+<script>
+
+    $(function () {
+        var id = window.location.href.split("id")[1].split("=")[1];
+        console.log(decodeURI(id));
+        FanTian(id);
+    })
+    //证照列表反填数据表单
+    function FanTian(id) {
+        $.ajax({
+            async: false,
+            url: "http://localhost:57726/api/default/CerParticulars",
+            type: "get",
+            dataType: "json",
+            data: { cerId: id },
+            success: function (d) {
+
+                $("#txt_Name").val(d.c_Name);
+                $("#txt_Number").val(d.c_Number);
+                $("#txt_Authority").val(d.c_Authority);
+                $("#txt_Date").val(d.c_Date);
+                if (d.c_Review == true) {
+                    $("#Review_shi").prop("checked", true);
+                }
+                else {
+                    $("#Review_fou").prop("checked", true);
+                }
+                $("#txt_Annual").val(d.c_Annual);
+                if (d.c_Review == 1) {
+                    $("#Validity_shi").prop("checked", true);
+                }
+                else {
+                    $("#Validity_fou").prop("checked", true);
+                }
+                $("#txt_Annuall").val(d.c_Annual);
+                $("#txt_Loaner").val(d.c_Loaner);
+                $("#txt_Manager").val(d.c_Manager);
+                $("#txt_Description").val(d.c_Description);
+            }
+        })
+    }
+    //列表返回
+    function Fh() {
+        location.href = "/Certifications/Index";
+    }
+</script>

@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewData["Title"] = "证照列表";
+}
+
+<h1></h1>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/lib/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<link href="~/css/site.css" rel="stylesheet" />
+<div>
+    <div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="demoReload" autocomplete="off">
+    </div>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="Show()">
+        <i class="layui-icon">&#xe615;</i> 查找
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:585px;" onclick="Tj()">
+        <i class="layui-icon">&#xe654;</i> 登记
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="Sx()">
+        <i class="layui-icon">&#xe9aa;</i> 刷新
+    </button>
+
+</div>
+<table style="margin-top:70px;" class="table table-bordered text-center">
+    <thead>
+        <tr style="background-color:#f5f5f5">
+            <td>名称</td>
+            <td>签发日期</td>
+            <td>下次年审日期</td>
+            <td>有效期至</td>
+            <td>借用人</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody id="tb">
+    </tbody>
+</table>
+<div style="margin-left:50%;">
+    <table>
+        <tr>
+            <td><input type="button" value="首页" class="layui-btn layui-btn-primary" onclick="Show('Frist')" /></td>
+            <td><input type="button" value="上一页" class="layui-btn layui-btn-primary" onclick="Show('Prev')" /></td>
+            <td><input type="button" value="下一页" class="layui-btn layui-btn-primary" onclick="Show('Next')" /></td>
+            <td>
+                <input type="button" class="layui-btn layui-btn-primary" value="尾页" onclick="Show('Last')" />
+                <input type="hidden" value="1" id="pageindex" />
+            </td>
+
+        </tr>
+    </table>
+</div>
+<script>
+    //文档就绪函数
+    $(function () {
+        Show();
+    })
+
+    //证照列表显示查询
+    function Show(page) {
+        var we = 1;
+        switch (page) {
+            case 'Frist':
+                $("#pageindex").val(1);
+                break;
+            case 'Prev':
+                $("#pageindex").val(Number($("#pageindex").val()) - Number(1));
+                break;
+            case 'Next':
+                $("#pageindex").val(Number($("#pageindex").val()) + Number(1));
+                break;
+            case 'Last':
+                $("#pageindex").val(we);
+                break;
+        }
+        var obj = {};
+        obj.pageindex = $("#pageindex").val();
+        obj.pagesize = 2;
+        $.ajax({
+            url: 'http://localhost:57726/api/default/GetCertifications',
+            data: { cername: $("#demoReload").val(), pageindex: obj.pageindex, pagesize: obj.pagesize },
+            type: 'get',
+            dataType: 'json',
+            success: function (d) {
+
+                $("#tb").empty();
+                $(d).each(function () {
+                    var c_validity;
+                    if (this.c_Validity == 1) {
+                        c_validity = "永久"
+                    } else {
+                        c_validity = "非永久"
+                    }
+                    var html = '<tr>' +
+                        '<td>' + '<a href = "/Certifications/GetLicParticulars?id=' + this.c_Id + '">' + this.c_Name + '</a>' + '</td>' +
+                        '<td>' + this.c_Date + '</td>' +
+                        '<td>' + this.c_Annual + '</td>' +
+                        '<td>' + c_validity + '</td>' +
+                        '<td>' + this.c_Loaner + '</td>' +
+                        '<td><button type="button" class="layui-btn layui-btn-normal layui-btn-sm" onclick="Del(' + this.c_Id + ')"><i class="layui-icon"></i></button></td > ' +
+                        '</tr>'
+                    $("#tb").append(html);
+                })
+            }
+        })
+    }
+
+    //删除证照列表信息
+    function Del(id) {
+        if (confirm("确认删除嘛？")) {
+            $.ajax({
+                url: 'http://localhost:57726/api/default/DelCertification?dcerId=' + id,
+                type: 'post',
+                dataType: 'json',
+                success: function (d) {
+                    if (d > 0) {
+                        alert("删除成功");
+                        Show();
+                    }
+                }
+            })
+        }
+    }
+
+    //添加页面跳转
+    function Tj() {
+        location.href = "/Certifications/AddCertification";
+    }
+
+    //刷新页面
+    function Sx() {
+        location.href = "/Certifications/Index";
+    }
+</script>

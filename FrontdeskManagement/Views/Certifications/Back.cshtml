@@ -1,0 +1,192 @@
+﻿
+@{
+    ViewData["Title"] = "证照借用详情";
+}
+
+<h1></h1>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/lib/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+
+<div>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:910px;" onclick="Fh()">
+        <i class="layui-icon">&#xe65c;</i> 返回
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="">
+        <i class="layui-icon">&#xe9aa;</i> 刷新
+    </button>
+</div>
+<br />
+<button type="button" class="layui-btn layui-btn-sm layui-btn-primary" onclick="Dy()">
+    <i class="layui-icon">&#xe66d;</i>打印
+</button>
+<h2 style="background-color:cornsilk">基本信息</h2>
+<table class="table table-bordered">
+    <tr>
+        <td class="text-center">主题</td>
+        <td>
+            <input class="form-control" id="txt_Matter" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">结束时间</td>
+        <td>
+            <input class="form-control" id="txt_EndTime" type="text" />
+        </td>
+    </tr>
+</table>
+<h2 style="background-color:cornsilk">申请信息</h2>
+<table class="table table-bordered">
+    <tr>
+        <td class="text-center">申请人</td>
+        <td>
+            <select class="form-control" id="txt_Sqr">
+                <option value="-1">--请选择--</option>
+            </select>
+        </td>
+        <td class="text-center">所属部门</td>
+        <td>
+            <select class="form-control" id="txt_Bm">
+                <option value="-1">--请选择--</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">申请时间</td>
+        <td>
+            <input class="form-control" id="txt_ApplicationTime" type="text" />
+        </td>
+        <td class="text-center">证照名称</td>
+        <td>
+            <select class="form-control" id="txt_Zz">
+                <option value="-1">--请选择--</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">事由及用途</td>
+        <td colspan="3">
+            <textarea class="form-control" id="txt_Purpose" rows="2" cols="20"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">预借时间</td>
+        <td>
+            <input class="form-control" id="txt_AdvanceTime" type="text" />
+        </td>
+        <td class="text-center">归还时间</td>
+        <td>
+            <input class="form-control" id="txt_ReturenTime" type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">实际归还信息</td>
+        <td colspan="3">
+            <textarea class="form-control" id="txt_Information" rows="2" cols="20"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">附件</td>
+        <td>
+            <input id="File1" type="file" />
+        </td>
+    </tr>
+</table>
+<script>
+    //文档就绪函数
+    $(function () {
+        var id = window.location.href.split("id")[1].split("=")[1];
+        console.log(decodeURI(id));
+        GetApplicant();//获取申请人的下拉绑定
+        GetDepartment();//获取部门的下拉绑定
+        GetSealName();//获取印章名称下拉绑定
+        FanTian(id);
+    })
+    //申请人下拉框
+    function GetApplicant() {
+        $.ajax({
+            async: false,
+            url: 'http://localhost:57726/api/default/GetApplicants',
+            dataType: "json",
+            type: "get",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#txt_Sqr").append("<option value='" + this.aId + "'>" + this.aName + "</option>");
+                })
+            }
+        })
+    }
+    //部门下拉框
+    function GetDepartment() {
+        $.ajax({
+            async: false,
+            url: 'http://localhost:57726/api/default/GetDepartments',
+            dataType: "json",
+            type: "get",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#txt_Bm").append("<option value='" + this.dId + "'>" + this.dName + "</option>");
+                })
+            }
+        })
+    }
+    //证照名称下拉框
+    function GetSealName() {
+        $.ajax({
+            async: false,
+            url: 'http://localhost:57726/api/default/GetLicenseNames',
+            dataType: "json",
+            type: "get",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#txt_Zz").append("<option value='" + this.lN_Id + "'>" + this.lN_Name + "</option>");
+                })
+            }
+        })
+    }
+    //证照借用反填数据表单
+    function FanTian(id) {
+        $.ajax({
+            async: false,
+            url: "http://localhost:57726/api/default/LicParticulars",
+            type: "get",
+            dataType: "json",
+            data: { licId: id },
+            success: function (d) {
+
+                $("#txt_Matter").val(d.l_Matter);
+                $("#txt_EndTime").val(d.l_EndTime);
+                $("#txt_Sqr option").each(function () {
+                    if (this.value == d.a_Id) {
+                        $(this).prop("selected", "selected");
+                    }
+                })
+                $("#txt_Bm option").each(function () {
+                    if (this.value == d.d_Id) {
+                        $(this).prop("selected", "selected");
+                    }
+                })
+                $("#txt_Zz option").each(function () {
+                    if (this.value == d.lN_Id) {
+                        $(this).prop("selected", "selected");
+                    }
+                })
+                $("#txt_ApplicationTime").val(d.l_ApplicationTime);
+                $("#txt_Purpose").val(d.l_Purpose);
+                $("#txt_AdvanceTime").val(d.l_AdvanceTime);
+                $("#txt_ReturenTime").val(d.l_ReturenTime);
+                $("#txt_Information").val(d.l_Information);
+            }
+        })
+    }
+    //返回列表
+    function Fh() {
+        location.href = "/Certifications/Show";
+    }
+    //全局打印
+    function Dy() {
+        window.print(FanTian);
+    }
+</script>
