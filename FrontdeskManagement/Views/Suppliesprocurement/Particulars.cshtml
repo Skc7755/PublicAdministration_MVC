@@ -53,9 +53,9 @@
         <td>
             <input class="form-control" id="txt_ApplicationTime" type="text" />
         </td>
-        <td class="text-center">领用数量</td>
+        <td class="text-center">采购数量</td>
         <td>
-            <input class="form-control" id="txt_ReceivedQuantity" type="text" />
+            <input class="form-control" id="txt_ProcurementQuantity" type="text" />
         </td>
     </tr>
     <tr>
@@ -97,6 +97,16 @@
             success: function (d) {
                 $("#txt_ThemeName").val(d.themeName);
                 $("#txt_EndTime").val(d.endTime);
+                $("#txt_Sqr option").each(function () {
+                    if (this.value == d.dId) {
+                        $(this).prop("selected", "selected");
+                    }
+                })
+                $("#txt_Cat option").each(function () {
+                    if (this.value == d.aId) {
+                        $(this).prop("selected", "selected");
+                    }
+                })
                 $("#txt_ApplicationTime").val(d.applicationTime);
                 $("#txt_ReceivedQuantity").val(d.receivedQuantity);
                 $("#txt_Remarks").val(d.remarks);
@@ -134,7 +144,7 @@
     function Show() {
         $.ajax({
             url: 'http://localhost:57726/api/Default/GetSuppliescollect/',
-             type: 'get',
+            type: 'get',
             dataType: 'json',
             success: function (d) {
                 $("#tb").empty();
