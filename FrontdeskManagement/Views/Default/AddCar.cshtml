@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "AddCar";
+}
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+<h1>添加车辆信息</h1>
+<table>
+    <tr>
+        <td>车名：<input id="Text1" type="text" /></td>
+    </tr>
+    <tr>
+        <td>车牌号：<input id="Text2" type="text" /></td>
+    </tr>
+    <tr>
+        <td>下次年检日期：<input id="Text3" type="date" /></td>
+    </tr>
+    <tr>
+        <td>保险截止日期：<input id="Text5" type="date" /></td>
+    </tr>
+    <tr>
+        <td>上次保养日期：<input id="Text6" type="date" /></td>
+    </tr>
+    <tr>
+        <td>状态：<input id="Text7" type="text" /></td>
+    </tr>
+    <tr>
+        <td><input id="Button1" type="button" value="确定"  onclick="AddCar()"/></td>
+    </tr>
+
+</table>
+<script>
+
+
+    function AddCar() {
+        var obj = {
+            "CarName": $("#Text1").val(),
+            "LicensePlateNum": $("#Text2").val(),
+            "NextInspection": $("#Text3").val(),
+            "InsuranceExpirationDate": $("#Text5").val(),
+            "LastMaintenanceDate": $("#Text6").val(),
+            "AutoState": $("#Text7").val()
+        }
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/AddVehicleInfo",
+            contentType: 'application/json;charset=utf-8',
+            type: "post",
+            data: JSON.stringify(obj),
+            dataType: "json",
+            success: function (data) {
+                if (data <= 0) {
+
+                    alert("添加失败");
+                    return;
+                }
+                else {
+                    location.href = "/Default/VehicleInfoList";
+                }
+            }
+        })
+             }
+
+
+
+</script>
+

@@ -21,7 +21,7 @@
     <button type="button" class="layui-btn layui-btn-primary" onclick="Show();">
         <i class="layui-icon">&#xe615;</i> 查找
     </button>
-    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:350px;" onclick="Register()">
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:330px;" onclick="Register()">
         <i class="layui-icon">&#xe654;</i> 用品领用申请
     </button>
     <button type="button" class="layui-btn layui-btn-primary" onclick="Show();">
@@ -41,7 +41,19 @@
         </tbody>
     </table>
 </div>
-
+<div style="margin-left:35%;">
+    <table>
+        <tr>
+            <td><input type="button" value="首页" class="layui-btn layui-btn-primary" onclick="Show('Frist')" /></td>
+            <td><input type="button" value="上一页" class="layui-btn layui-btn-primary" onclick="Show('Prev')" /></td>
+            <td><input type="button" value="下一页" class="layui-btn layui-btn-primary" onclick="Show('Next')" /></td>
+            <td>
+                <input type="button" class="layui-btn layui-btn-primary" value="尾页" onclick="Show('Last')" />
+                <input type="hidden" value="1" id="pageindex" />
+            </td>
+        </tr>
+    </table>
+</div>
 <script>
     layui.use('form', function () {
         var form = layui.form;
@@ -64,10 +76,28 @@
     Show();
 
 
-    function Show() {
+    function Show(page) {
+        var we = 1;
+        switch (page) {
+            case 'Frist':
+                $("#pageindex").val(1);
+                break;
+            case 'Prev':
+                $("#pageindex").val(Number($("#pageindex").val()) - Number(1));
+                break;
+            case 'Next':
+                $("#pageindex").val(Number($("#pageindex").val()) + Number(1));
+                break;
+            case 'Last':
+                $("#pageindex").val(we);
+                break;
+        }
+        var obj = {};
+        obj.pageindex = $("#pageindex").val();
+        obj.pagesize = 4;
         $.ajax({
             url: 'http://localhost:57726/api/Default/GetSuppliescollect/',
-            data: { TName: $("#demoReload").val() },
+            data: { TName: $("#demoReload").val(), pageindex: obj.pageindex, pagesize: obj.pagesize },
             type: 'get',
             dataType: 'json',
             success: function (d) {
@@ -85,7 +115,7 @@
             }
         })
     }
-        //登记跳转
+    //登记跳转
     function Register() {
         location.href = '/SuppliesCollect/Registers';
     }

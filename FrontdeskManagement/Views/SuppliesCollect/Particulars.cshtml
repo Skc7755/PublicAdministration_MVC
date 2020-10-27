@@ -9,7 +9,10 @@
     <legend>用品领用申请详情</legend>
 </fieldset>
 <div>
-    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:910px;" onclick="Return()">
+    <button type="button" class="layui-btn layui-btn-sm layui-btn-primary" style="margin-left:800px;" onclick="Retur()">
+        <i class="layui-icon">&#xe66d;</i>打印
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary"  onclick="Return()">
         <i class="layui-icon">&#xe65c;</i> 返回
     </button>
     <button type="button" class="layui-btn layui-btn-primary" onclick="">
@@ -66,19 +69,7 @@
         </td>
     </tr>
 </table>
-<table style="margin-top:70px;" class="table table-bordered">
-    <thead>
-        <tr style="background-color:#F5F5F5">
-            <td>用品名称</td>
-            <td>规格</td>
-            <td>库存数量</td>
-            <td>领用数量</td>
-            <td>备注</td>
-        </tr>
-    </thead>
-    <tbody id="tb">
-    </tbody>
-</table>
+
 <script>
     $(function () {
         var id = window.location.href.split("id")[1].split("=")[1];
@@ -165,6 +156,9 @@
     //返回跳转
     function Return() {
         location.href = '/SuppliesCollect/List';
+    }
+    function Retur() {
+        window.print(Thefill);
     }
 </script>
 

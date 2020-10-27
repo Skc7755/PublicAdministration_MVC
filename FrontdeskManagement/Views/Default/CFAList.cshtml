@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewData["Title"] = "CFAList";
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="dv">
+
+    </div>
+    <div id="dv3" style="margin-top:0px;width:1500px;height:350px;margin-left:0px;border:double 0px">
+        <figure class="wave">
+
+            <img src="~/猫头鹰/鹿晗.jpg" />  <figcaption>一</figcaption>
+        </figure>
+        <figure class="wave">
+
+
+            <img src="~/猫头鹰/鹿晗2.jpg" />
+            <figcaption>面</figcaption>
+        </figure>
+        <figure class="wave">
+
+            <img src="~/猫头鹰/u=3289428870,60862045&fm=26&gp=0.jpg" />
+            <figcaption>而</figcaption>
+        </figure>
+        <figure class="wave">
+            <img src="~/猫头鹰/u=1613769004,2146556512&fm=26&gp=0.jpg" />
+           
+            <figcaption>就</figcaption>
+        </figure>
+        <figure class="wave">
+
+            <img src="~/猫头鹰/37.gif" />   <figcaption>.</figcaption>
+        </figure>
+
+    </div>
+
+    <style type="text/css">
+        #dv3 {
+            display: flex;
+            align-items: start;
+            height: 100vh;
+            background: #f8f8f8f8;
+            font-size: 52px;
+            font-family: 汉仪竹节体简;
+            font-weight: bold;
+        }
+
+        .wave {
+            float: left;
+            margin: 20px;
+            animation: wave ease-in-out 0.5s infinite alternate;
+            transform-origin: center -20px;
+        }
+
+            .wave:hover {
+                animation-play-state: paused;
+            }
+
+            .wave img {
+                border: 9px solid #696767;
+                display: block;
+                width: 200px;
+                height: 250px;
+            }
+
+            .wave figcaption {
+                color: aqua;
+                text-align: center;
+            }
+
+            .wave:after {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border: 6px dashed #000000;
+                top: -10px;
+                left: 50%;
+                z-index: 0;
+                border-bottom: none;
+                border-right: none;
+                transform: rotate(45deg);
+            }
+
+            .wave:before {
+                content: '';
+                position: absolute;
+                top: -23px;
+                left: 50%;
+                display: block;
+                height: 44px;
+                width: 47px;
+                background-repeat: no-repeat;
+                z-index: 16;
+            }
+
+        @@keyframes wave {
+            0% {
+                transform: rotate(3deg);
+            }
+
+            100% {
+                transform: rotate(-3deg);
+            }
+        }
+    </style>
+
+</body>
+</html>
+<script>
+
+    CFAList();
+    //资产领用
+    function CFAList() {
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/CFAList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '主题 ' + "</th>" +
+                    "<th>" + '申请人' + "</th>" +
+                    "<th>" + '所属部门' + " </th>" +
+                    "<th>" + '申请日期' + " </th>" +
+                    "<th>" + '领用数量' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#' onclick='CFAListDetail(" + this.id + ")'>" + this.subject + "</a>" + "</td>" +
+                        "<td>" + this.proposer + "</td>" +
+                        "<td>" + this.department + "</td>" +
+                        "<td>" + this.applicationDate + "</td>" +
+                        "<td>" + this.amount + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+    }
+       //资产领用详情
+    function CFAListDetail(id) {
+
+        location.href = "/Default/CFAListDetail?id=" + id;
+
+    }
+
+</script>

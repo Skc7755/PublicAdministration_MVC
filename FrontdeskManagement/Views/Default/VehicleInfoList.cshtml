@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewData["Title"] = "VehicleInfoList";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<script src="~/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/css/site.css" rel="stylesheet" />
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:975px;width:135px;height:66px" onclick="AddCar();">
+        <i class="layui-icon">&#xe654;</i> 添加
+    </button>
+    <div id="dv">
+
+    </div>
+    <div id="dv3" style="margin-top:0px;width:1500px;height:350px;margin-left:0px;border:double 0px">
+        <figure class="wave">
+
+            <img src="~/猫头鹰/u=1792638406,2922986574&fm=26&gp=0.jpg" /> <figcaption>一</figcaption>
+        </figure>
+        <figure class="wave">
+
+            <img src="~/猫头鹰/u=2251627190,2433090645&fm=26&gp=0.jpg" />
+            <figcaption>面</figcaption>
+        </figure>
+        <figure class="wave">
+            <img src="~/猫头鹰/owl5.jpg" />
+            <figcaption>而</figcaption>
+        </figure>
+        <figure class="wave">
+            <img src="~/猫头鹰/owl8.jpg" />
+            <figcaption>就</figcaption>
+        </figure>
+        <figure class="wave">
+            <img src="~/猫头鹰/张一山1.jpg" /><figcaption>。。。</figcaption>
+        </figure>
+
+    </div>
+    <style type="text/css">
+        #dv3 {
+            display: flex;
+            align-items: start;
+            height: 100vh;
+            background: #f8f8f8f8;
+            font-size: 52px;
+            font-family: 汉仪竹节体简;
+            font-weight: bold;
+        }
+
+        .wave {
+            float: left;
+            margin: 20px;
+            animation: wave ease-in-out 0.5s infinite alternate;
+            transform-origin: center -20px;
+        }
+
+            .wave:hover {
+                animation-play-state: paused;
+            }
+
+            .wave img {
+                border: 9px solid #696767;
+                display: block;
+                width: 200px;
+                height: 250px;
+            }
+
+            .wave figcaption {
+                color:#00ff90;
+                text-align: center;
+            }
+
+            .wave:after {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border: 6px dashed #000000;
+                top: -10px;
+                left: 50%;
+                z-index: 0;
+                border-bottom: none;
+                border-right: none;
+                transform: rotate(45deg);
+            }
+
+            .wave:before {
+                content: '';
+                position: absolute;
+                top: -23px;
+                left: 50%;
+                display: block;
+                height: 44px;
+                width: 47px;
+                background-repeat: no-repeat;
+                z-index: 16;
+            }
+
+        @@keyframes wave {
+            0% {
+                transform: rotate(3deg);
+            }
+
+            100% {
+                transform: rotate(-3deg);
+            }
+        }
+    </style>
+</body>
+</html>
+
+<script>
+
+    VehicleInfoList();
+    //车辆列表
+    function VehicleInfoList() {
+
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/VehicleInfoList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '车辆名称' + "</th>" +
+                    "<th>" + '车牌号' + "</th>" +
+                    "<th>" + '下次年检日期' + " </th>" +
+                    "<th>" + '保险截止日期' + " </th>" +
+                    "<th>" + '上次保养日期' + " </th>" +
+                    "<th>" + '状态' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#' onclick='VehicleInfoDetail(" + this.id + ")'>" + this.carName + "</a>" + "</td>" +
+                        "<td>" + this.licensePlateNum + "</td>" +
+                        "<td>" + this.nextInspection + "</td>" +
+                        "<td>" + this.insuranceExpirationDate + "</td>" +
+                        "<td>" + this.lastMaintenanceDate + "</td>" +
+                        "<td>" + this.autoState + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+            }
+        })
+
+    }
+    //车辆详情
+    function VehicleInfoDetail(id) {
+
+        location.href = "/Default/CarDetail?id=" + id;
+
+    }
+    function AddCar() {
+        location.href = "/Default/AddCar";
+    }
+</script>

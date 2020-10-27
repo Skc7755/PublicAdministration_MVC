@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewData["Title"] = "AssetsList";
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="dv">
+
+    </div>
+    <div id="dv3" style="margin-top:0px;width:1500px;height:350px;margin-left:0px;border:double 0px">
+        <figure class="wave">
+            <img src="~/猫头鹰/owl7.jpg" /><figcaption>一</figcaption>
+        </figure>
+        <figure class="wave">
+            <img src="~/猫头鹰/owl6.jpg" />
+            <figcaption>面</figcaption>
+        </figure>
+        <figure class="wave">
+            <img src="~/猫头鹰/owl5.jpg" />
+            <figcaption>而</figcaption>
+        </figure>
+        <figure class="wave">
+            <img src="~/猫头鹰/owl8.jpg" />
+            <figcaption>就</figcaption>
+        </figure>
+        <figure class="wave">
+
+            <img src="~/猫头鹰/37.gif" />   <figcaption>.</figcaption>
+        </figure>
+
+    </div>
+
+    <style type="text/css">
+        #dv3 {
+            display: flex;
+            align-items: start;
+            height: 100vh;
+            background: #f8f8f8f8;
+            font-size: 52px;
+            font-family: 汉仪竹节体简;
+            font-weight: bold;
+        }
+
+        .wave {
+            float: left;
+            margin: 20px;
+            animation: wave ease-in-out 0.5s infinite alternate;
+            transform-origin: center -20px;
+        }
+
+            .wave:hover {
+                animation-play-state: paused;
+            }
+
+            .wave img {
+                border: 9px solid #696767;
+                display: block;
+                width: 200px;
+                height: 250px;
+            }
+
+            .wave figcaption {
+                color: aqua;
+                text-align: center;
+            }
+
+            .wave:after {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border: 6px dashed #000000;
+                top: -10px;
+                left: 50%;
+                z-index: 0;
+                border-bottom: none;
+                border-right: none;
+                transform: rotate(45deg);
+            }
+
+            .wave:before {
+                content: '';
+                position: absolute;
+                top: -23px;
+                left: 50%;
+                display: block;
+                height: 44px;
+                width: 47px;
+                background-repeat: no-repeat;
+                z-index: 16;
+            }
+
+        @@keyframes wave {
+            0% {
+                transform: rotate(3deg);
+            }
+
+            100% {
+                transform: rotate(-3deg);
+            }
+        }
+    </style>
+
+</body>
+</html>
+<script>
+    AssetsList();
+          //资产列表
+    function AssetsList() {
+        jQuery.ajax({
+            url: "http://localhost:57726/api/default/AssetsList",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+              
+                $("#dv").empty();
+                var tbr = '<table class="table table-bordered">' +
+                    "<tr>" +
+                    "<th>" + '资产名称' + "</th>" +
+                    "<th>" + '资产类别' + "</th>" +
+                    "<th>" + '规格' + " </th>" +
+                    "<th>" + '编号' + " </th>" +
+                    "<th>" + '所在部门' + " </th>" +
+                    "<th>" + '单价(元)' + " </th>" +
+                    "</tr>" +
+                    '<tbody id="tb">' +
+                    '</tbody>' +
+                    '</table>';
+                $("#dv").append(tbr);
+                $(data).each(function () {
+                    var str = " <tr>" +
+                        "<td>" + "<a href='#' onclick='AssetsListDetail(" + this.id + ")'>" + this.assetName + "</a>" + "</td>" +
+                        "<td>" + this.assetType + "</td>" +
+                        "<td>" + this.specification + "</td>" +
+                        "<td>" + this.serialNumber + "</td>" +
+                        "<td>" + this.department + "</td>" +
+                        "<td>" + this.unitPrice + "</td>" +
+                        "</tr>";
+                    $("#tb").append(str);
+                })
+
+            }
+        })
+    }
+    //资产详情
+    function AssetsListDetail(id) {
+
+        location.href = "/Default/AssetsListDetail?id=" + id;
+    }
+
+</script>
+
