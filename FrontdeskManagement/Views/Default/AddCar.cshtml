@@ -2,9 +2,12 @@
 @{
     ViewData["Title"] = "AddCar";
 }
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-<h1>添加车辆信息</h1>
-<table>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<script src="~/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/css/site.css" rel="stylesheet" />
+<h1 style="font-family:Consolas">登记车辆信息</h1>
+<table style="width:1000px;height:700px">
     <tr>
         <td>车名：<input id="Text1" type="text" /></td>
     </tr>
@@ -24,7 +27,15 @@
         <td>状态：<input id="Text7" type="text" /></td>
     </tr>
     <tr>
-        <td><input id="Button1" type="button" value="确定"  onclick="AddCar()"/></td>
+        <td>
+            <button type="button" class="layui-btn layui-btn-primary" style="margin-left:21px;width:135px;height:66px;" onclick="AddCar();">
+                <i class="layui-icon">&raquo;</i> 确定
+            </button>  
+            <button type="button" class="layui-btn layui-btn-primary" style="margin-left:1px;width:135px;height:66px;" onclick="location.href='/Default/VehicleInfoList'">
+                <i class="layui-icon">&crarr;</i> 返回
+            </button>
+        </td>
+       
     </tr>
 
 </table>
@@ -57,7 +68,7 @@
                 }
             }
         })
-             }
+    }
 
 
 
